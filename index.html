@@ -1,11 +1,82 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
   <head>
     <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="/favicon_light.svg"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      href="/favicon_dark.svg"
+      media="(prefers-color-scheme: dark)"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Basic SEO -->
     <title>OpenCreate</title>
+    <meta
+      name="description"
+      content="A platform for modern, high-performance, open-source creative tools. Discover OpenCreate Forge, our professional image editor."
+    />
+    <meta
+      name="keywords"
+      content="OpenCreate, OpenCreate Forge, image editor, open-source, canvas engine, double-buffering, layers, design, raster, ocfd, OpenCreate Forge Document"
+    />
+    <meta name="author" content="OpenCreate" />
+    <link rel="canonical" href="https://opencreate-app.github.io" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://opencreate-app.github.io" />
+    <meta property="og:title" content="OpenCreate" />
+    <meta
+      property="og:description"
+      content="We develop high-performance professional applications for creators. 100% open-source, offline-first, and telemetry-free."
+    />
+    <meta
+      property="og:image"
+      content="https://opencreate-app.github.io/favicon_dark.svg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:url" content="https://opencreate-app.github.io" />
+    <meta property="twitter:title" content="OpenCreate" />
+    <meta
+      property="twitter:description"
+      content="We develop high-performance professional applications for creators. 100% open-source, offline-first, and telemetry-free."
+    />
+    <meta
+      property="twitter:image"
+      content="https://opencreate-app.github.io/favicon_dark.svg"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;600&family=Roboto:wght@300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>OpenCreate Official Website</h1>
+    <div id="root">
+      <div
+        id="pre-loader"
+        style="
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #fff0e5;
+          color: #331500;
+          font-family: sans-serif;
+        "
+      >
+        Loading OpenCreate...
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
