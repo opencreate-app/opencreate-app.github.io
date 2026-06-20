@@ -1,14 +1,10 @@
 import { SearchX } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
+import { NOT_FOUND_META } from "../siteMeta";
 
 export function NotFoundPage() {
-  useDocumentMeta({
-    title: "OpenCreate - Page not found",
-    description: "The requested OpenCreate page could not be found.",
-    canonical: window.location.href.split("#")[0],
-    themeColor: "#5555FF",
-  });
+  useDocumentMeta(NOT_FOUND_META);
 
   return (
     <div className="grid min-h-screen place-items-center bg-[#f7f8ff] px-4 text-[#1a1a1a]">

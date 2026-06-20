@@ -9,6 +9,7 @@ import {
   Puzzle,
   Rocket,
   ExternalLink,
+  Heart,
 } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 // import {
@@ -20,6 +21,8 @@ import { AppLink } from "../components/AppLink";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/SectionHeading";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
+import { HOME_META } from "../siteMeta";
+import { MadeInBrasilSeal } from "../components/MadeInBrasilSeal";
 
 const pillars: Array<{
   title: string;
@@ -89,7 +92,7 @@ function SiteNav() {
 
           <AppLink
             href="./forge"
-            className="inline-flex items-center gap-2 rounded-full bg-[#ff6a00] px-4 py-2 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(255,85,85,0.25)] transition hover:-translate-y-0.5 hover:bg-[#ff5a00]"
+            className="hidden md:flex items-center gap-2 rounded-full bg-[#ff6a00] px-4 py-2 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(255,85,85,0.25)] transition hover:-translate-y-0.5 hover:bg-[#ff5a00]"
           >
             Read Forge
             <ArrowRight className="h-5 w-5" />
@@ -110,14 +113,16 @@ function PillarCard({
   icon: LucideIcon;
 }) {
   return (
-    <div className="rounded-[28px] border border-[#dfe3ff] bg-white p-6 shadow-[0_20px_60px_rgba(16,24,40,0.05)] transition">
-      <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#f3f4ff] text-[#5555FF] transition">
+    <div className="flex flex-col rounded-[28px] border border-[#dfe3ff] bg-white p-6 shadow-[0_20px_60px_rgba(16,24,40,0.05)]">
+      <div className="mb-5 inline-flex h-12 w-12 mx-auto md:mx-0 items-center justify-center rounded-2xl bg-[#f3f4ff] text-[#5555FF]">
         <Icon className="h-5 w-5" />
       </div>
-      <h3 className="text-xl font-bold tracking-[-0.03em] text-[#1a1a1a]">
+      <h3 className="text-xl font-bold tracking-[-0.03em] text-[#1a1a1a] text-center md:text-left">
         {title}
       </h3>
-      <p className="mt-3 text-sm leading-6 text-[#555]">{description}</p>
+      <p className="mt-3 text-sm leading-6 text-[#555] text-pretty text-center md:text-left">
+        {description}
+      </p>
     </div>
   );
 }
@@ -129,7 +134,7 @@ function Hero() {
       className="relative overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(85,85,255,0.12),_transparent_42%),linear-gradient(180deg,_#ffffff_0%,_#f7f8ff_100%)]"
     >
       <div className="absolute inset-0 -z-0 opacity-80 [background-image:linear-gradient(rgba(85,85,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(85,85,255,0.04)_1px,transparent_1px)] [background-size:40px_40px]" />
-      <div className="mx-auto grid min-h-[70vh] w-full max-w-7xl place-items-center px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto grid min-h-[70vh] w-full max-w-7xl place-items-center p-6 md:p-8">
         <Reveal className="relative z-10 flex w-full max-w-5xl flex-col items-center text-center">
           <img
             src="/OpenCreate-Logo.svg"
@@ -168,9 +173,34 @@ function Hero() {
   );
 }
 
+function Manifest() {
+  return (
+    <section id="manifest" className="bg-white p-6 md:p-8">
+      <div className="mx-auto max-w-7xl">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Manifest"
+            title="Open source, native speed, privacy first."
+            description="We build tools that feel precise, fast, and respectful of the person behind the screen."
+            icon={<Layers3 className="h-5 w-5" />}
+          />
+        </Reveal>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {pillars.map((pillar, index) => (
+            <Reveal key={pillar.title} delay={index * 0.08}>
+              <PillarCard {...pillar} />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Solutions() {
   return (
-    <section id="solutions" className="bg-[#f7f8ff] px-4 py-24 sm:px-6 lg:px-8">
+    <section id="solutions" className="bg-[#f7f8ff] p-6 md:p-8">
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading
@@ -197,7 +227,7 @@ function Solutions() {
                   a double-buffering based engine, and native support for the
                   .ocfd format. Available for Desktop.
                 </p>
-                <div className="mt-8 flex flex-wrap gap-3">
+                <div className="mt-8 flex flex-wrap gap-3 justify-center md:justify-start">
                   <AppLink
                     href="./forge"
                     className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#11162f] transition hover:-translate-y-0.5"
@@ -221,14 +251,14 @@ function Solutions() {
 
           <Reveal delay={0.1}>
             <div className="grid h-full gap-6">
-              <div className="rounded-[32px] border-3 border-dashed border-[#cbd0ff] p-8">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#f2f4ff] text-[#5555FF]">
+              <div className="flex flex-col rounded-[32px] border-3 border-dashed border-[#cbd0ff] p-8">
+                <div className="inline-flex h-12 w-12 mx-auto md:mx-0 items-center justify-center rounded-2xl bg-[#f2f4ff] text-[#5555FF]">
                   <Rocket className="h-5 w-5" />
                 </div>
-                <h3 className="mt-5 text-2xl font-black tracking-[-0.04em]">
+                <h3 className="mt-5 text-2xl font-black tracking-[-0.04em] text-center md:text-left">
                   More tools are coming
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-[#555]">
+                <p className="mt-3 text-sm leading-6 text-[#555] text-pretty text-center md:text-left">
                   The catalog is intentionally small today so each product can
                   be polished to a professional standard.
                 </p>
@@ -243,7 +273,7 @@ function Solutions() {
 
 function Community() {
   return (
-    <section id="community" className="bg-[#f7f8ff] px-4 pb-24 sm:px-6 lg:px-8">
+    <section id="community" className="bg-[#f7f8ff] p-6 md:p-8">
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <div className="overflow-hidden rounded-[36px] bg-[linear-gradient(135deg,_#13162a_0%,_#222a52_48%,_#5555FF_150%)] px-6 py-10 text-white shadow-[0_30px_100px_rgba(17,22,47,0.26)] sm:px-10 sm:py-12">
@@ -298,7 +328,7 @@ function Community() {
   );
 }
 
-function Footer() {
+export function Footer() {
   return (
     <footer className="border-t border-black/5 bg-white px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
@@ -366,48 +396,32 @@ function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 max-w-7xl border-t border-black/5 pt-6 text-sm text-[#777]">
-        © 2026 OpenCreate. Created with ❤️ by Gabriel Borges.
+      <div className="flex flex-col gap-4 mx-auto mt-12 max-w-7xl border-t border-black/5 pt-6 text-sm text-[#777]">
+        <div className="flex gap-1 justify-center">
+          <span>© 2026 OpenCreate. Created with</span>
+          <Heart size={20} className="text-red-500" />
+          <span>by Gabriel Borges.</span>
+        </div>
+        <div className="flex gap-1 justify-center">
+          <MadeInBrasilSeal
+            height={56}
+            className="scale-[1] hover:scale-[1.1] transition-transform duration-300 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]"
+          />
+        </div>
       </div>
     </footer>
   );
 }
 
 export function HomePage() {
-  useDocumentMeta({
-    title: "OpenCreate",
-    description:
-      "OpenCreate develops high-performance, open-source creative applications for designers and artists.",
-    canonical: window.location.href.split("#")[0],
-    themeColor: "#5555FF",
-  });
+  useDocumentMeta(HOME_META);
 
   return (
     <div className="min-h-screen bg-[#e6e6e6] text-[#1a1a1a]">
       <SiteNav />
       <main>
         <Hero />
-        <section id="manifest" className="bg-white px-4 py-24 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <Reveal>
-              <SectionHeading
-                eyebrow="Manifest"
-                title="Open source, native speed, privacy first."
-                description="We build tools that feel precise, fast, and respectful of the person behind the screen."
-                icon={<Layers3 className="h-5 w-5" />}
-              />
-            </Reveal>
-
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {pillars.map((pillar, index) => (
-                <Reveal key={pillar.title} delay={index * 0.08}>
-                  <PillarCard {...pillar} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
+        <Manifest />
         <Solutions />
         <Community />
       </main>

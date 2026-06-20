@@ -23,9 +23,11 @@ import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/SectionHeading";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { LinuxLogo, MacOSLogo, WindowsLogo } from "../components/Icons";
+import { FORGE_META } from "../siteMeta";
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Footer } from "./HomePage";
 
 const features: Array<{
   title: string;
@@ -177,9 +179,34 @@ function Hero() {
   );
 }
 
+function Perfomance() {
+  return (
+    <section className="bg-white/70 p-6 md:p-8">
+      <div className="mx-auto max-w-7xl">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Performance"
+            title="Features Built for Performance"
+            description="Every part of Forge is designed to keep complex workspaces responsive and precise."
+            accentClassName="text-[#ff6a00]"
+            icon={<Zap className="h-5 w-5" />}
+          />
+        </Reveal>
+        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {features.map((feature, index) => (
+            <Reveal key={feature.title} delay={index * 0.06}>
+              <FeatureCard {...feature} />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Architecture() {
   return (
-    <section id="architecture" className="bg-white px-4 py-24 sm:px-6 lg:px-8">
+    <section id="architecture" className="bg-white p-6 md:p-8">
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading
@@ -324,7 +351,7 @@ export class CustomTool extends BaseTool {
 
 function Downloads() {
   return (
-    <section id="downloads" className="bg-[#fff7f0] px-4 py-24 sm:px-6 lg:px-8">
+    <section id="downloads" className="bg-[#fff7f0] p-6 md:p-8">
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading
@@ -365,115 +392,15 @@ function Downloads() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="border-t border-black/5 bg-white px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
-        <div>
-          <div className="flex items-center gap-3">
-            <img src="/OpenCreate-Logo.svg" alt="OpenCreate" className="w-50" />
-          </div>
-        </div>
-
-        <div>
-          <div className="text-sm font-bold text-[#1a1a1a]">Resources</div>
-          <div className="mt-4 grid gap-3 text-sm text-[#666]">
-            <a
-              href="https://github.com/opencreate-app"
-              className="transition hover:text-[#5555FF]"
-            >
-              Source Code
-            </a>
-            <a
-              href="https://github.com/opencreate-app"
-              className="transition hover:text-[#5555FF]"
-            >
-              Report Bug
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <div className="text-sm font-bold text-[#1a1a1a]">Products</div>
-          <div className="mt-4 grid gap-3 text-sm text-[#666]">
-            <AppLink href="./forge" className="transition hover:text-[#5555FF]">
-              OpenCreate Forge
-            </AppLink>
-          </div>
-        </div>
-
-        <div>
-          <div className="text-sm font-bold text-[#1a1a1a]">Social</div>
-          <div className="mt-4 grid gap-3 text-sm text-[#666]">
-            <a
-              href="https://github.com/opencreate-app"
-              target="_blank"
-              rel="noreferrer"
-              className="transition hover:text-[#5555FF]"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://threads.com/opencreate.app"
-              target="_blank"
-              rel="noreferrer"
-              className="transition hover:text-[#5555FF]"
-            >
-              Threads
-            </a>
-            <a
-              href="https://instagram.com/opencreate.app"
-              target="_blank"
-              rel="noreferrer"
-              className="transition hover:text-[#5555FF]"
-            >
-              Instagram
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div className="mx-auto mt-12 max-w-7xl border-t border-black/5 pt-6 text-sm text-[#777]">
-        © 2026 OpenCreate. Created with ❤️ by Gabriel Borges.
-      </div>
-    </footer>
-  );
-}
-
 export function ForgePage() {
-  useDocumentMeta({
-    title: "OpenCreate Forge",
-    description:
-      "OpenCreate Forge is a professional image editor with double-buffered Canvas rendering, layers, and native .ocfd support.",
-    canonical: window.location.href.split("#")[0],
-    themeColor: "#ff6a00",
-  });
+  useDocumentMeta(FORGE_META);
 
   return (
     <div className="min-h-screen bg-[#fff0e5] text-[#331500]">
       <ForgeTopBar />
       <main>
         <Hero />
-        <section className="bg-white/70 px-4 py-24 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <Reveal>
-              <SectionHeading
-                eyebrow="Performance"
-                title="Features Built for Performance"
-                description="Every part of Forge is designed to keep complex workspaces responsive and precise."
-                accentClassName="text-[#ff6a00]"
-                icon={<Zap className="h-5 w-5" />}
-              />
-            </Reveal>
-            <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-              {features.map((feature, index) => (
-                <Reveal key={feature.title} delay={index * 0.06}>
-                  <FeatureCard {...feature} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Perfomance />
         <Architecture />
         <Downloads />
       </main>

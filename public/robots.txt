@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://opencreate-app.github.io/sitemap.xml
