@@ -136,7 +136,10 @@ function FeatureCard({
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,106,0,0.12),_transparent_38%),linear-gradient(180deg,_#fff0e5_0%,_#fffaf6_100%)]">
+    <section
+      id="about"
+      className="relative overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,106,0,0.12),_transparent_38%),linear-gradient(180deg,_#fff0e5_0%,_#fffaf6_100%)]"
+    >
       <div className="absolute inset-0 -z-0 opacity-80 [background-image:linear-gradient(rgba(255,106,0,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,106,0,0.06)_1px,transparent_1px)] [background-size:44px_44px]" />
       <div className="mx-auto grid min-h-[70vh] w-full max-w-7xl place-items-center px-4 py-20 sm:px-6 lg:px-8">
         <Reveal className="relative z-10 flex max-w-5xl flex-col items-center text-center">
@@ -181,7 +184,7 @@ function Hero() {
 
 function Perfomance() {
   return (
-    <section className="bg-white/70 p-6 md:p-8">
+    <section id="perfomance" className="bg-white/70 p-6 md:p-8">
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading
@@ -400,7 +403,7 @@ export function ForgePage() {
   return (
     <div className="min-h-screen bg-[#fff0e5] text-[#331500]">
       <ForgeTopBar />
-      <main>
+      <main className="page-forge">
         <Hero />
         <Perfomance />
         <Architecture />

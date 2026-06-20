@@ -68,11 +68,11 @@ function SiteNav() {
           <a href="#about" className="transition hover:text-[#5555FF]">
             About
           </a>
-          <a href="#solutions" className="transition hover:text-[#5555FF]">
-            Solutions
-          </a>
           <a href="#manifest" className="transition hover:text-[#5555FF]">
             Manifest
+          </a>
+          <a href="#solutions" className="transition hover:text-[#5555FF]">
+            Solutions
           </a>
           <a href="#community" className="transition hover:text-[#5555FF]">
             Community
@@ -422,7 +422,7 @@ export function HomePage() {
   return (
     <div className="min-h-screen bg-[#e6e6e6] text-[#1a1a1a]">
       <SiteNav />
-      <main>
+      <main className="page-home">
         <Hero />
         <Manifest />
         <Solutions />

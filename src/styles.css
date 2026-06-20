@@ -44,3 +44,13 @@ img {
   background: rgba(85, 85, 255, 0.18);
   color: #111;
 }
+
+/* Scroll margin top */
+
+.page-home section:is(#about, #manifest, #solutions, #community) {
+  scroll-margin-top: 64px;
+}
+
+.page-forge section:is(#about, #perfomance, #architecture, #downloads) {
+  scroll-margin-top: 76px;
+}
