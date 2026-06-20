@@ -27,7 +27,7 @@ export function SectionHeading({
         {title}
       </h2>
       {description ? (
-        <p className="mt-4 max-w-3xl text-sm leading-7 text-[#4a4a4a] sm:text-base">
+        <p className="mt-4 max-w-3xl text-sm leading-6 text-[#4a4a4a] sm:text-base">
           {description}
         </p>
       ) : null}

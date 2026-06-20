@@ -1,14 +1,14 @@
-import { SearchX } from 'lucide-react'
-import { AppLink } from '../components/AppLink'
-import { useDocumentMeta } from '../hooks/useDocumentMeta'
+import { SearchX } from "lucide-react";
+import { AppLink } from "../components/AppLink";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
 
 export function NotFoundPage() {
   useDocumentMeta({
-    title: 'OpenCreate - Page not found',
-    description: 'The requested OpenCreate page could not be found.',
-    canonical: window.location.href.split('#')[0],
-    themeColor: '#5555FF',
-  })
+    title: "OpenCreate - Page not found",
+    description: "The requested OpenCreate page could not be found.",
+    canonical: window.location.href.split("#")[0],
+    themeColor: "#5555FF",
+  });
 
   return (
     <div className="grid min-h-screen place-items-center bg-[#f7f8ff] px-4 text-[#1a1a1a]">
@@ -19,15 +19,18 @@ export function NotFoundPage() {
         <h1 className="mt-6 text-3xl font-black tracking-[-0.04em]">
           Page not found
         </h1>
-        <p className="mt-3 text-sm leading-7 text-[#555]">
+        <p className="mt-3 text-sm leading-6 text-[#555]">
           The route you opened does not exist in this site.
         </p>
         <div className="mt-8 flex justify-center">
-          <AppLink href="./" className="inline-flex items-center gap-2 rounded-full bg-[#5555FF] px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5">
+          <AppLink
+            href="./"
+            className="inline-flex items-center gap-2 rounded-full bg-[#5555FF] px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5"
+          >
             Back home
           </AppLink>
         </div>
       </div>
     </div>
-  )
+  );
 }

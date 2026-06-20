@@ -117,7 +117,7 @@ function PillarCard({
       <h3 className="text-xl font-bold tracking-[-0.03em] text-[#1a1a1a]">
         {title}
       </h3>
-      <p className="mt-3 text-sm leading-7 text-[#555]">{description}</p>
+      <p className="mt-3 text-sm leading-6 text-[#555]">{description}</p>
     </div>
   );
 }
@@ -192,7 +192,7 @@ function Solutions() {
                 />
               </div>
               <div className="flex flex-col lg:grid-cols-[1.1fr_0.9fr] items-center lg:items-start">
-                <p className="mt-4 max-w-xl text-sm leading-7 text-white text-pretty text-center lg:text-left">
+                <p className="mt-4 max-w-xl text-sm leading-6 text-white text-pretty text-center lg:text-left">
                   A professional image manipulation editor. Raster/text layers,
                   a double-buffering based engine, and native support for the
                   .ocfd format. Available for Desktop.
@@ -228,7 +228,7 @@ function Solutions() {
                 <h3 className="mt-5 text-2xl font-black tracking-[-0.04em]">
                   More tools are coming
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-[#555]">
+                <p className="mt-3 text-sm leading-6 text-[#555]">
                   The catalog is intentionally small today so each product can
                   be polished to a professional standard.
                 </p>
@@ -251,7 +251,7 @@ function Community() {
               <h2 className="text-3xl font-black tracking-[-0.04em] sm:text-5xl text-center">
                 By creators, for creators.
               </h2>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/80 sm:text-base text-center text-balance">
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-white/80 sm:text-base text-center text-balance">
                 OpenCreate is maintained (for now) by a single developer
                 passionated for creativity, focused on free software and
                 practical performance. You can help by reporting bugs,
