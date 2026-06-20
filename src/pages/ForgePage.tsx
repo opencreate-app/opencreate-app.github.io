@@ -28,6 +28,7 @@ import { FORGE_META } from "../siteMeta";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import vscDarkPlus from "react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus.js";
 import { Footer } from "./HomePage";
+import { useForgeRelease } from "../hooks/useForgeRelease";
 
 const features: Array<{
   title: string;
@@ -57,30 +58,6 @@ const features: Array<{
     description:
       "Save your work in the native OpenCreate Forge Document format. Compact, JSON-based with smart binary encoding, preserving your history and editor state.",
     icon: FileJson,
-  },
-];
-
-const downloads = [
-  {
-    name: "Linux",
-    note: "Flatpak package.",
-    action: "Download .flatpak",
-    href: "https://github.com/gabrielborgesweb/OpenCreate-Forge/releases/download/v0.2.0/OpenCreate.Forge-0.2.0-x86_64.flatpak",
-    icon: LinuxLogo,
-  },
-  {
-    name: "macOS",
-    note: "Apple Silicon and Intel.",
-    action: "Download .dmg",
-    href: "https://github.com/gabrielborgesweb/OpenCreate-Forge/releases/download/v0.2.0/OpenCreate.Forge-0.2.0-arm64.dmg",
-    icon: MacOSLogo,
-  },
-  {
-    name: "Windows",
-    note: "64-bit Windows 10 and 11.",
-    action: "Download .exe installer",
-    href: "https://github.com/gabrielborgesweb/OpenCreate-Forge/releases/download/v0.2.0/OpenCreate.Forge.Setup.0.2.0.exe",
-    icon: WindowsLogo,
   },
 ];
 
@@ -134,7 +111,7 @@ function FeatureCard({
   );
 }
 
-function Hero() {
+function Hero({ release }: { release: ReturnType<typeof useForgeRelease> }) {
   return (
     <section
       id="about"
@@ -162,11 +139,18 @@ function Hero() {
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a
-              href="#downloads"
+              href={release.downloadUrl}
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-[#ff6a00] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_20px_50px_rgba(255,106,0,0.26)] transition hover:-translate-y-0.5 hover:bg-[#e85e00]"
             >
-              Download for Linux / macOS / Windows
-              <Download className="h-5 w-5" />
+              {release.platform
+                ? `Download for ${release.platform}`
+                : "Download Latest Release"}
+              {release.platform === "Windows" && <WindowsLogo size={20} />}
+              {release.platform === "macOS" && <MacOSLogo size={20} />}
+              {release.platform === "Linux" && <LinuxLogo size={20} />}
+              {!release.platform && <Download className="h-5 w-5" />}
             </a>
             <a
               href="#architecture"
@@ -352,7 +336,35 @@ export class CustomTool extends BaseTool {
   );
 }
 
-function Downloads() {
+function Downloads({
+  release,
+}: {
+  release: ReturnType<typeof useForgeRelease>;
+}) {
+  const dynamicDownloads = [
+    {
+      name: "Linux",
+      note: "AppImage package",
+      action: "Download .AppImage",
+      href: release.allUrls.linux,
+      icon: LinuxLogo,
+    },
+    {
+      name: "macOS",
+      note: "Apple Silicon (arm64)",
+      action: "Download .dmg",
+      href: release.allUrls.macos,
+      icon: MacOSLogo,
+    },
+    {
+      name: "Windows",
+      note: "Windows 10/11 (x86_64)",
+      action: "Download .exe",
+      href: release.allUrls.windows,
+      icon: WindowsLogo,
+    },
+  ];
+
   return (
     <section id="downloads" className="bg-[#fff7f0] p-6 md:p-8">
       <div className="mx-auto max-w-7xl">
@@ -367,30 +379,32 @@ function Downloads() {
         </Reveal>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {downloads.map(({ name, note, action, href, icon: Icon }, index) => (
-            <Reveal key={name} delay={index * 0.08}>
-              <div className="flex h-full flex-col rounded-[30px] border border-[#ffd9bf] bg-white p-7 shadow-[0_20px_60px_rgba(51,21,0,0.05)]">
-                <div className="inline-flex h-12 w-12 self-center md:self-start items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
-                  <Icon className="h-5 w-5" />
+          {dynamicDownloads.map(
+            ({ name, note, action, href, icon: Icon }, index) => (
+              <Reveal key={name} delay={index * 0.08}>
+                <div className="flex h-full flex-col rounded-[30px] border border-[#ffd9bf] bg-white p-7 shadow-[0_20px_60px_rgba(51,21,0,0.05)]">
+                  <div className="inline-flex h-12 w-12 self-center md:self-start items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-5 text-2xl font-black tracking-[-0.04em] text-[#1a1a1a] text-center md:text-left">
+                    {name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-[#555] text-center md:text-left">
+                    {note}
+                  </p>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-8 inline-flex w-fit self-center md:self-start items-center gap-2 rounded-full bg-[#ff6a00] px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#e85e00]"
+                  >
+                    {action}
+                    <ArrowRight className="h-5 w-5" />
+                  </a>
                 </div>
-                <h3 className="mt-5 text-2xl font-black tracking-[-0.04em] text-[#1a1a1a] text-center md:text-left">
-                  {name}
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-[#555] text-center md:text-left">
-                  {note}
-                </p>
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-8 inline-flex w-fit self-center md:self-start items-center gap-2 rounded-full bg-[#ff6a00] px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#e85e00]"
-                >
-                  {action}
-                  <ArrowRight className="h-5 w-5" />
-                </a>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ),
+          )}
         </div>
       </div>
     </section>
@@ -399,15 +413,16 @@ function Downloads() {
 
 export function ForgePage() {
   useDocumentMeta(FORGE_META);
+  const release = useForgeRelease();
 
   return (
     <div className="min-h-screen bg-[#fff0e5] text-[#331500]">
       <ForgeTopBar />
       <main className="page-forge">
-        <Hero />
+        <Hero release={release} />
         <Perfomance />
         <Architecture />
-        <Downloads />
+        <Downloads release={release} />
       </main>
       <Footer />
     </div>

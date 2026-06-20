@@ -10,19 +10,16 @@ import {
   Rocket,
   ExternalLink,
   Heart,
+  Download,
 } from "lucide-react";
 import { AppLink } from "../components/AppLink";
-// import {
-//   ElectronLogo,
-//   ReactLogo,
-//   TailwindLogo,
-//   TypescriptLogo,
-// } from "../components/Icons";
+import { LinuxLogo, MacOSLogo, WindowsLogo } from "../components/Icons";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/SectionHeading";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { HOME_META } from "../siteMeta";
 import { MadeInBrasilSeal } from "../components/MadeInBrasilSeal";
+import { useForgeRelease } from "../hooks/useForgeRelease";
 
 const pillars: Array<{
   title: string;
@@ -91,10 +88,10 @@ function SiteNav() {
           </a>
 
           <AppLink
-            href="./forge"
+            href="/forge"
             className="hidden md:flex items-center gap-2 rounded-full bg-[#ff6a00] px-4 py-2 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(255,85,85,0.25)] transition hover:-translate-y-0.5 hover:bg-[#ff5a00]"
           >
-            Read Forge
+            About Forge
             <ArrowRight className="h-5 w-5" />
           </AppLink>
         </div>
@@ -199,6 +196,8 @@ function Manifest() {
 }
 
 function Solutions() {
+  const { downloadUrl, platform } = useForgeRelease();
+
   return (
     <section id="solutions" className="bg-[#f7f8ff] p-6 md:p-8">
       <div className="mx-auto max-w-7xl">
@@ -223,27 +222,30 @@ function Solutions() {
               </div>
               <div className="flex flex-col lg:grid-cols-[1.1fr_0.9fr] items-center lg:items-start">
                 <p className="mt-4 max-w-xl text-sm leading-6 text-white text-pretty text-center lg:text-left">
-                  A professional image manipulation editor. Raster/text layers,
-                  a double-buffering based engine, and native support for the
-                  .ocfd format. Available for Desktop.
+                  A professional image manipulation editor featuring raster and
+                  text layers, a double-buffering engine, and native support for
+                  its own format: OpenCreate Forge Document (.ocfd).
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3 justify-center md:justify-start">
-                  <AppLink
-                    href="./forge"
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#11162f] transition hover:-translate-y-0.5"
-                  >
-                    Read more
-                    <ArrowRight className="h-5 w-5" />
-                  </AppLink>
                   <a
-                    href="https://github.com/gabrielborgesweb/opencreate-forge/releases/latest"
+                    href={downloadUrl}
                     target="_blank"
                     rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#11162f] transition hover:-translate-y-0.5"
+                  >
+                    <span>Download{platform ? ` for ${platform}` : ""}</span>
+                    {platform === "Windows" && <WindowsLogo size={18} />}
+                    {platform === "macOS" && <MacOSLogo size={18} />}
+                    {platform === "Linux" && <LinuxLogo size={18} />}
+                    {!platform && <Download className="h-5 w-5" />}
+                  </a>
+                  <AppLink
+                    href="/forge"
                     className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/15"
                   >
-                    Latest release
-                    <ExternalLink className="h-5 w-5" />
-                  </a>
+                    Learn more
+                    <ArrowRight className="h-5 w-5" />
+                  </AppLink>
                 </div>
               </div>
             </div>
@@ -256,7 +258,7 @@ function Solutions() {
                   <Rocket className="h-5 w-5" />
                 </div>
                 <h3 className="mt-5 text-2xl font-black tracking-[-0.04em] text-center md:text-left">
-                  More tools are coming
+                  And there's more...
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-[#555] text-pretty text-center md:text-left">
                   The catalog is intentionally small today so each product can
