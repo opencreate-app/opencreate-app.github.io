@@ -276,7 +276,7 @@ function Community() {
     <section id="community" className="bg-[#f7f8ff] p-6 md:p-8">
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <div className="overflow-hidden rounded-[36px] bg-[linear-gradient(135deg,_#13162a_0%,_#222a52_48%,_#5555FF_150%)] px-6 py-10 text-white shadow-[0_30px_100px_rgba(17,22,47,0.26)] sm:px-10 sm:py-12">
+          <div className="overflow-hidden rounded-[36px] bg-[linear-gradient(135deg,_#13162a_0%,_#222a52_48%,_#5555FF_150%)] px-6 py-10 text-white sm:px-10 sm:py-12">
             <div className="flex flex-col items-center">
               <h2 className="text-3xl font-black tracking-[-0.04em] sm:text-5xl text-center">
                 By creators, for creators.
@@ -290,7 +290,7 @@ function Community() {
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href="https://github.com/gabrielborgesweb"
+                  href="https://github.com/opencreate-app"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#11162f] transition hover:-translate-y-0.5"
@@ -299,7 +299,7 @@ function Community() {
                   <Github className="h-5 w-5" />
                 </a>
                 <a
-                  href="https://github.com/gabrielborgesweb"
+                  href="https://github.com/opencreate-app"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/15"

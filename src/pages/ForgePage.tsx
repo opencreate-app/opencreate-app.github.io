@@ -11,7 +11,7 @@ import {
   WandSparkles,
   // Sparkle,
   // Cpu,
-  ExternalLink,
+  // ExternalLink,
   Network,
   CodeXml,
   DatabaseZap,
@@ -170,7 +170,7 @@ function Hero() {
               className="inline-flex items-center justify-center gap-2 rounded-full border border-[#ffc7a4] bg-white px-6 py-3.5 text-sm font-semibold text-[#331500] transition hover:-translate-y-0.5 hover:border-[#ff6a00] hover:text-[#ff6a00]"
             >
               Extendable by Design
-              <ExternalLink className="h-5 w-5" />
+              {/* <ExternalLink className="h-5 w-5" /> */}
             </a>
           </div>
         </Reveal>
