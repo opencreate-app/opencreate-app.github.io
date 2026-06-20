@@ -62,25 +62,25 @@ const features: Array<{
 
 const downloads = [
   {
+    name: "Linux",
+    note: "Flatpak package.",
+    action: "Download .flatpak",
+    href: "https://github.com/gabrielborgesweb/OpenCreate-Forge/releases/download/v0.2.0/OpenCreate.Forge-0.2.0-x86_64.flatpak",
+    icon: LinuxLogo,
+  },
+  {
     name: "macOS",
-    note: "Available for Apple Silicon (M1/M2/M3) and Intel.",
+    note: "Apple Silicon and Intel.",
     action: "Download .dmg",
     href: "https://github.com/gabrielborgesweb/OpenCreate-Forge/releases/download/v0.2.0/OpenCreate.Forge-0.2.0-arm64.dmg",
     icon: MacOSLogo,
   },
   {
     name: "Windows",
-    note: "Compatible with 64-bit Windows 10 and 11.",
+    note: "64-bit Windows 10 and 11.",
     action: "Download .exe installer",
     href: "https://github.com/gabrielborgesweb/OpenCreate-Forge/releases/download/v0.2.0/OpenCreate.Forge.Setup.0.2.0.exe",
     icon: WindowsLogo,
-  },
-  {
-    name: "Linux",
-    note: "Available in Flatpak package.",
-    action: "Download .flatpak",
-    href: "https://github.com/gabrielborgesweb/OpenCreate-Forge/releases/download/v0.2.0/OpenCreate.Forge-0.2.0-x86_64.flatpak",
-    icon: LinuxLogo,
   },
 ];
 
@@ -88,7 +88,7 @@ function ForgeTopBar() {
   return (
     <div className="sticky top-0 z-40 border-b border-[#ffd7bf] bg-white/85 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <AppLink href="./" className="flex items-center gap-3">
+        <AppLink href="/" className="flex items-center gap-3">
           <img
             src="/OpenCreate-Forge-Logo.svg"
             alt="OpenCreate Forge"
@@ -121,13 +121,13 @@ function FeatureCard({
 }) {
   return (
     <div className="flex flex-col h-full rounded-[28px] border border-[#ffd9bf] bg-white p-6 shadow-[0_20px_60px_rgba(51,21,0,0.05)] transition hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(51,21,0,0.08)]">
-      <div className="mb-auto inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
+      <div className="mb-auto inline-flex h-12 w-12 mx-auto md:mx-0 items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
         <Icon className="h-5 w-5" />
       </div>
-      <h3 className="mt-5 text-xl font-bold tracking-[-0.03em] text-[#1a1a1a]">
+      <h3 className="mt-5 text-xl font-bold tracking-[-0.03em] text-[#1a1a1a] text-center md:text-left">
         {title}
       </h3>
-      <p className="mt-3 text-sm leading-6 text-[#555] text-pretty">
+      <p className="mt-3 text-sm leading-6 text-[#555] text-pretty text-center md:text-left">
         {description}
       </p>
     </div>
@@ -228,61 +228,61 @@ function Architecture() {
                   Extendable by design
                 </div> */}
 
-                <h3 className="text-2xl font-black tracking-[-0.04em] text-[#101010]">
+                <h3 className="text-2xl font-black tracking-[-0.04em] text-[#101010] text-center md:text-left">
                   Architecture that stays out of your way.
                 </h3>
-                <p className="mt-3 max-w-xl text-sm leading-6 text-[#555] text-pretty">
+                <p className="mt-3 max-w-xl text-sm leading-6 text-[#555] text-pretty text-center md:text-left">
                   Forge keeps the editor logic split, typed, and stateful only
                   where it matters, so tools can evolve without turning the UI
                   into a maintenance burden.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3">
-                  <div className="flex items-start gap-4 rounded-3xl border border-[#ecd5c4] bg-white p-4">
-                    <div className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
+                  <div className="flex items-start flex-col md:flex-row gap-4 rounded-3xl border border-[#ecd5c4] bg-white p-4">
+                    <div className="mt-0.5 inline-flex h-10 w-10 shrink-0 self-center items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
                       <Network className="h-5 w-5" />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-[#1a1a1a]">
+                      <div className="text-sm font-bold text-[#1a1a1a] text-center md:text-left">
                         Clean architecture
                       </div>
-                      <p className="mt-1 text-sm text-[#555] text-balance">
+                      <p className="mt-1 text-sm text-[#555] text-balance text-center md:text-left">
                         Electron Main and Renderer responsibilities stay
                         isolated.
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 rounded-3xl border border-[#ecd5c4] bg-white p-4">
-                    <div className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
+                  <div className="flex items-start flex-col md:flex-row gap-4 rounded-3xl border border-[#ecd5c4] bg-white p-4">
+                    <div className="mt-0.5 inline-flex h-10 w-10 shrink-0 self-center items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
                       <CodeXml className="h-5 w-5" />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-[#1a1a1a]">
+                      <div className="text-sm font-bold text-[#1a1a1a] text-center md:text-left">
                         Native TypeScript
                       </div>
-                      <p className="mt-1 text-sm text-[#555] text-balance">
+                      <p className="mt-1 text-sm text-[#555] text-balance text-center md:text-left">
                         Tool actions are strongly typed to catch mistakes early.
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4 rounded-3xl border border-[#ecd5c4] bg-white p-4">
-                    <div className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
+                  <div className="flex items-start flex-col md:flex-row gap-4 rounded-3xl border border-[#ecd5c4] bg-white p-4">
+                    <div className="mt-0.5 inline-flex h-10 w-10 shrink-0 self-center items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
                       <DatabaseZap className="h-5 w-5" />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-[#1a1a1a]">
+                      <div className="text-sm font-bold text-[#1a1a1a] text-center md:text-left">
                         Zustand stores
                       </div>
-                      <p className="mt-1 text-sm text-[#555] text-balance">
+                      <p className="mt-1 text-sm text-[#555] text-balance text-center md:text-left">
                         Selection and history live outside the React tree.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-8 inline-flex rounded-full bg-[#fff1e7] px-4 py-2 text-sm font-semibold text-[#ff6a00]">
+                <div className="mt-8 inline-flex items-center rounded-full bg-[#fff1e7] px-4 py-2 text-sm font-semibold text-[#ff6a00] text-balance">
                   <WandSparkles className="h-5 w-5 mr-2 text-[#ff6a00]" />
                   Tools can be extended without rewriting the engine
                 </div>
@@ -367,18 +367,20 @@ function Downloads() {
           {downloads.map(({ name, note, action, href, icon: Icon }, index) => (
             <Reveal key={name} delay={index * 0.08}>
               <div className="flex h-full flex-col rounded-[30px] border border-[#ffd9bf] bg-white p-7 shadow-[0_20px_60px_rgba(51,21,0,0.05)]">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
+                <div className="inline-flex h-12 w-12 self-center md:self-start items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
                   <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="mt-5 text-2xl font-black tracking-[-0.04em] text-[#1a1a1a]">
+                <h3 className="mt-5 text-2xl font-black tracking-[-0.04em] text-[#1a1a1a] text-center md:text-left">
                   {name}
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-[#555]">{note}</p>
+                <p className="mt-3 text-sm leading-6 text-[#555] text-center md:text-left">
+                  {note}
+                </p>
                 <a
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-[#ff6a00] px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#e85e00]"
+                  className="mt-8 inline-flex w-fit self-center md:self-start items-center gap-2 rounded-full bg-[#ff6a00] px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#e85e00]"
                 >
                   {action}
                   <ArrowRight className="h-5 w-5" />

@@ -60,7 +60,7 @@ function SiteNav() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/60 bg-white/75 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <AppLink href="./" className="flex items-center gap-3">
+        <AppLink href="/" className="flex items-center gap-3">
           <img src="/OpenCreate-Logo.svg" alt="OpenCreate" className="w-50" />
         </AppLink>
 
@@ -359,7 +359,7 @@ export function Footer() {
         <div>
           <div className="text-sm font-bold text-[#1a1a1a]">Products</div>
           <div className="mt-4 grid gap-3 text-sm text-[#666]">
-            <AppLink href="./forge" className="transition hover:text-[#5555FF]">
+            <AppLink href="/forge" className="transition hover:text-[#5555FF]">
               OpenCreate Forge
             </AppLink>
           </div>
@@ -397,10 +397,13 @@ export function Footer() {
       </div>
 
       <div className="flex flex-col gap-4 mx-auto mt-12 max-w-7xl border-t border-black/5 pt-6 text-sm text-[#777]">
-        <div className="flex gap-1 justify-center">
-          <span>© 2026 OpenCreate. Created with</span>
-          <Heart size={20} className="text-red-500" />
-          <span>by Gabriel Borges.</span>
+        <div className="flex gap-2 justify-center items-center flex-col">
+          <div>© 2026 OpenCreate.</div>
+          <div className="flex gap-1">
+            Created with
+            <Heart size={16} className="mt-[0.1em] text-red-500 fill-red-500" />
+            by Gabriel Borges.
+          </div>
         </div>
         <div className="flex gap-1 justify-center">
           <MadeInBrasilSeal
