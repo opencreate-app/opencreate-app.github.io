@@ -9,7 +9,6 @@
     BlinkMacSystemFont,
     sans-serif;
   color: #1a1a1a;
-  background: #e6e6e6;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,7 +23,6 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #e6e6e6;
 }
 
 * {
