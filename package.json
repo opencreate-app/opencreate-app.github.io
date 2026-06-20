@@ -9,7 +9,7 @@
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "build": "tsc && vite build && npm run prerender",
     "preview": "vite preview",
-    "prerender": "tsx scripts/prerender.ts",
+    "prerender": "node scripts/prerender.mjs",
     "deploy": "tsc && vite build && npm run prerender && vite preview --host",
     "lighthouse": "cross-env CHROME_PATH=\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" lighthouse http://localhost:4173 --chrome-flags=\"--headless\" --only-categories=performance",
     "lighthouse:report": "cross-env CHROME_PATH=\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" lighthouse http://localhost:4173 --chrome-flags=\"--headless\" --only-categories=performance --view --output html --output-path ./lighthouse-report.html"
