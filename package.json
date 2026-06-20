@@ -10,7 +10,7 @@
     "build": "tsc && vite build && npm run prerender",
     "preview": "vite preview",
     "prerender": "node --import tsx scripts/prerender.tsx",
-    "deploy": "tsc && vite build && npm run prerender && npm run preview -- --host",
+    "preview:host": "tsc && vite build && npm run prerender && npm run preview -- --host",
     "lighthouse": "cross-env CHROME_PATH=\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" lighthouse http://localhost:4173 --chrome-flags=\"--headless\" --only-categories=performance",
     "lighthouse:report": "cross-env CHROME_PATH=\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" lighthouse http://localhost:4173 --chrome-flags=\"--headless\" --only-categories=performance --view --output html --output-path ./lighthouse-report.html"
   },

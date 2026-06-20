@@ -1,5 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { useEffect, useState, type PropsWithChildren } from "react";
+import { motion } from "framer-motion";
+import type { PropsWithChildren } from "react";
 
 type RevealProps = PropsWithChildren<{
   className?: string;
@@ -7,19 +7,20 @@ type RevealProps = PropsWithChildren<{
 }>;
 
 export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
-  // const [ready, setReady] = useState(false);
-
-  // useEffect(() => {
-  //   setReady(true);
-  // }, []);
-
   return (
-    <div
-      // className={`reveal ${ready ? "reveal-ready" : ""} ${className}`}
+    <motion.div
       className={className}
-      style={{ animationDelay: `${delay}s` }}
+      initial={{ opacity: 0, y: 22 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.22 }}
+      transition={{
+        type: "spring",
+        stiffness: 100, // rigidez da mola
+        damping: 15, // amortecimento (evita que fique quicando muito)
+        delay,
+      }}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
