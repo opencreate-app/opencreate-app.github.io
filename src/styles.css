@@ -39,8 +39,12 @@ img {
 }
 
 ::selection {
-  background: rgba(85, 85, 255, 0.18);
-  color: #111;
+  background: #5555ff;
+  color: #fff;
+}
+
+.page-forge ::selection {
+  background: #ff6c00;
 }
 
 /* Scroll margin top */

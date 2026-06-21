@@ -77,7 +77,7 @@ function SiteNav() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
+          {/* <a
             href="https://github.com/opencreate-app"
             target="_blank"
             rel="noreferrer"
@@ -85,7 +85,7 @@ function SiteNav() {
             className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-[#1a1a1a] transition hover:-translate-y-0.5 hover:border-black/20 hover:shadow-sm"
           >
             <Github className="h-5 w-5" />
-          </a>
+          </a> */}
 
           <AppLink
             href="/forge"
@@ -301,7 +301,7 @@ function Community() {
                   <Github className="h-5 w-5" />
                 </a>
                 <a
-                  href="https://github.com/opencreate-app"
+                  href="https://github.com/opencreate-app/opencreate-app.github.io/issues"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/15"
@@ -344,13 +344,17 @@ export function Footer() {
           <div className="text-sm font-bold text-[#1a1a1a]">Resources</div>
           <div className="mt-4 grid gap-3 text-sm text-[#666]">
             <a
-              href="https://github.com/opencreate-app"
+              href="https://github.com/opencreate-app/opencreate-app.github.io"
+              target="_blank"
+              rel="noreferrer"
               className="transition hover:text-[#5555FF]"
             >
               Source Code
             </a>
             <a
-              href="https://github.com/opencreate-app"
+              href="https://github.com/opencreate-app/opencreate-app.github.io/issues"
+              target="_blank"
+              rel="noreferrer"
               className="transition hover:text-[#5555FF]"
             >
               Report Bug
@@ -361,7 +365,7 @@ export function Footer() {
         <div>
           <div className="text-sm font-bold text-[#1a1a1a]">Products</div>
           <div className="mt-4 grid gap-3 text-sm text-[#666]">
-            <AppLink href="/forge" className="transition hover:text-[#5555FF]">
+            <AppLink href="/forge" className="transition hover:text-[#FF6C00]">
               OpenCreate Forge
             </AppLink>
           </div>
