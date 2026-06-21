@@ -28,7 +28,7 @@ import { FORGE_META } from "../siteMeta";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import vscDarkPlus from "react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus.js";
 import { Footer } from "./HomePage";
-import { useForgeRelease } from "../hooks/useForgeRelease";
+import { useForgeRelease, type ReleaseInfo } from "../hooks/useForgeRelease";
 
 const features: Array<{
   title: string;
@@ -120,6 +120,13 @@ function Hero({ release }: { release: ReturnType<typeof useForgeRelease> }) {
       <div className="absolute inset-0 -z-0 opacity-80 [background-image:linear-gradient(rgba(255,106,0,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,106,0,0.06)_1px,transparent_1px)] [background-size:44px_44px]" />
       <div className="mx-auto grid min-h-[70vh] w-full max-w-7xl place-items-center px-4 py-20 sm:px-6 lg:px-8">
         <Reveal className="relative z-10 flex max-w-5xl flex-col items-center text-center">
+          {release.version && (
+            <Reveal delay={0.2}>
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#ff6a00] shadow-sm">
+                Latest Release: {release.version}
+              </div>
+            </Reveal>
+          )}
           <img
             src="/OpenCreate-Forge-Logo.svg"
             alt="OpenCreate Forge"
@@ -132,6 +139,7 @@ function Hero({ release }: { release: ReturnType<typeof useForgeRelease> }) {
           <h1 className="max-w-4xl text-balance text-3xl font-black tracking-[-0.04em] text-[#101010] sm:text-5xl lg:text-5xl">
             Forge your creations freely.
           </h1>
+
           <p className="mt-6 max-w-3xl text-balance text-base leading-8 text-[#4b4b4b] sm:text-lg">
             High-performance image manipulation featuring a double-buffered
             Canvas rendering engine, layers support, layer styles, and
@@ -371,7 +379,7 @@ function Downloads({
         <Reveal>
           <SectionHeading
             eyebrow="Downloads"
-            title="Download OpenCreate Forge"
+            title={`Download OpenCreate Forge ${release.version}`}
             description="Choose your platform and start creating right now."
             accentClassName="text-[#ff6a00]"
             icon={<Download className="h-5 w-5" />}
@@ -411,9 +419,13 @@ function Downloads({
   );
 }
 
-export function ForgePage() {
+export function ForgePage({
+  initialRelease,
+}: {
+  initialRelease?: ReleaseInfo;
+}) {
   useDocumentMeta(FORGE_META);
-  const release = useForgeRelease();
+  const release = useForgeRelease(initialRelease);
 
   return (
     <div className="min-h-screen bg-[#fff0e5] text-[#331500]">

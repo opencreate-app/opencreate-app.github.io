@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
+import { fetchLatestRelease } from "../src/hooks/useForgeRelease";
 import { ForgePage } from "../src/pages/ForgePage";
 import { HomePage } from "../src/pages/HomePage";
 import { NotFoundPage } from "../src/pages/NotFoundPage";
@@ -123,6 +124,8 @@ async function writePage({ outputPath, markup, meta }: RenderedPage) {
 }
 
 async function main() {
+  const latestRelease = await fetchLatestRelease();
+
   const pages: RenderedPage[] = [
     {
       outputPath: join(distDir, "index.html"),
@@ -131,7 +134,9 @@ async function main() {
     },
     {
       outputPath: join(distDir, "forge", "index.html"),
-      markup: renderToStaticMarkup(<ForgePage />),
+      markup: renderToStaticMarkup(
+        <ForgePage initialRelease={latestRelease || undefined} />,
+      ),
       meta: FORGE_META,
     },
     {
