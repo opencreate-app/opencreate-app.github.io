@@ -13,7 +13,7 @@ export type Platform = "Windows" | "macOS" | "Linux" | "";
 
 export function useForgeRelease() {
   const [downloadUrl, setDownloadUrl] = useState(
-    "https://github.com/gabrielborgesweb/opencreate-forge/releases/latest",
+    "https://github.com/opencreate-app/forge/releases/latest",
   );
   const [platform, setPlatform] = useState<Platform>("");
   const [allUrls, setAllUrls] = useState<{
@@ -21,9 +21,9 @@ export function useForgeRelease() {
     macos: string;
     linux: string;
   }>({
-    windows: "https://github.com/gabrielborgesweb/opencreate-forge/releases/latest",
-    macos: "https://github.com/gabrielborgesweb/opencreate-forge/releases/latest",
-    linux: "https://github.com/gabrielborgesweb/opencreate-forge/releases/latest",
+    windows: "https://github.com/opencreate-app/forge/releases/latest",
+    macos: "https://github.com/opencreate-app/forge/releases/latest",
+    linux: "https://github.com/opencreate-app/forge/releases/latest",
   });
 
   useEffect(() => {
@@ -38,29 +38,34 @@ export function useForgeRelease() {
     const currentPlatform = detectPlatform();
     setPlatform(currentPlatform);
 
-    fetch(
-      "https://api.github.com/repos/gabrielborgesweb/opencreate-forge/releases/latest",
-    )
+    fetch("https://api.github.com/repos/opencreate-app/forge/releases/latest")
       .then((res) => res.json())
       .then((data: GitHubRelease) => {
         if (data.assets) {
-          const windowsAsset = data.assets.find(
-            (a: GitHubAsset) =>
-              a.name.endsWith(".exe") && !a.name.includes("Setup"),
-          ) || data.assets.find((a: GitHubAsset) => a.name.endsWith(".exe"));
+          const windowsAsset =
+            data.assets.find(
+              (a: GitHubAsset) =>
+                a.name.endsWith(".exe") && !a.name.includes("Setup"),
+            ) || data.assets.find((a: GitHubAsset) => a.name.endsWith(".exe"));
 
           const macosAsset = data.assets.find((a: GitHubAsset) =>
             a.name.endsWith(".dmg"),
           );
 
           const linuxAsset = data.assets.find((a: GitHubAsset) =>
-            a.name.endsWith(".AppImage"),
+            a.name.endsWith(".flatpak"),
           );
 
           setAllUrls({
-            windows: windowsAsset?.browser_download_url || "https://github.com/gabrielborgesweb/opencreate-forge/releases/latest",
-            macos: macosAsset?.browser_download_url || "https://github.com/gabrielborgesweb/opencreate-forge/releases/latest",
-            linux: linuxAsset?.browser_download_url || "https://github.com/gabrielborgesweb/opencreate-forge/releases/latest",
+            windows:
+              windowsAsset?.browser_download_url ||
+              "https://github.com/opencreate-app/forge/releases/latest",
+            macos:
+              macosAsset?.browser_download_url ||
+              "https://github.com/opencreate-app/forge/releases/latest",
+            linux:
+              linuxAsset?.browser_download_url ||
+              "https://github.com/opencreate-app/forge/releases/latest",
           });
 
           let asset;
