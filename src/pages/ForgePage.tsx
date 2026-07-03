@@ -352,8 +352,8 @@ function Downloads({
   const dynamicDownloads = [
     {
       name: "Linux",
-      note: "Flatpak package (x86_64)",
-      action: "Download .flatpak",
+      note: "AppImage (x86_64)",
+      action: "Download .AppImage",
       href: release.allUrls.linux,
       icon: LinuxLogo,
     },
