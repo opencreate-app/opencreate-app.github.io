@@ -91,7 +91,7 @@ function SiteNav() {
             href="/forge"
             className="hidden md:flex items-center gap-2 rounded-full bg-[#ff6a00] px-4 py-2 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(255,85,85,0.25)] transition hover:-translate-y-0.5 hover:bg-[#ff5a00]"
           >
-            About Forge
+            Get Forge
             <ArrowRight className="h-5 w-5" />
           </AppLink>
         </div>
