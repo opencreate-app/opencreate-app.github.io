@@ -429,7 +429,7 @@ export function Community() {
     <section
       id="community"
       aria-labelledby="community-title"
-      className="bg-[#f7f8ff] p-6 md:p-8"
+      className="bg-[#fffaf7] p-6 md:p-8"
     >
       <div className="mx-auto max-w-2xl">
         <Reveal>
