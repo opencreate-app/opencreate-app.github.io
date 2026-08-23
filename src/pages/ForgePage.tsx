@@ -1,171 +1,155 @@
 import {
   ArrowRight,
   Cable,
+  CodeXml,
+  DatabaseZap,
   Download,
   FileJson,
   Gauge,
+  Github,
   Layers3,
   MonitorCog,
-  // Sparkles,
-  Zap,
-  WandSparkles,
-  // Sparkle,
-  // Cpu,
-  // ExternalLink,
   Network,
-  CodeXml,
-  DatabaseZap,
-  // Package,
+  Zap,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { AppLink } from "../components/AppLink";
+import { LanguageToggle } from "../components/LanguageToggle";
 import { Reveal } from "../components/Reveal";
 import { SectionHeading } from "../components/SectionHeading";
-import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { LinuxLogo, MacOSLogo, WindowsLogo } from "../components/Icons";
-import { FORGE_META } from "../siteMeta";
-
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import vscDarkPlus from "react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus.js";
-import { Footer } from "./HomePage";
+import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { useForgeRelease, type ReleaseInfo } from "../hooks/useForgeRelease";
+import { useI18n } from "../i18n-context";
+import { FORGE_META } from "../siteMeta";
+import { Footer } from "./HomePage";
 
-const features: Array<{
-  title: string;
-  description: string;
-  icon: LucideIcon;
-}> = [
-  {
-    title: "Double-Buffered Canvas",
-    description:
-      "Real-time edits rendered at a constant 60fps. No stutters on ultra-high-resolution images thanks to our offscreen rendering strategy.",
-    icon: MonitorCog,
-  },
-  {
-    title: "Non-Destructive Layers",
-    description:
-      "Group, blend, and order Raster, Text, or Vector layers. Modify properties without permanently altering the original pixels.",
-    icon: Layers3,
-  },
-  {
-    title: "Pixel-Perfect Precision",
-    description:
-      "Dynamic rulers, adjustable magnetic guides, and mathematical transformations for rotation, scaling, and distortion without loss of visual quality.",
-    icon: Gauge,
-  },
-  {
-    title: "OpenCreate Forge Document",
-    description:
-      "Save your work in the native OpenCreate Forge Document format. Compact, JSON-based with smart binary encoding, preserving your history and editor state.",
-    icon: FileJson,
-  },
-];
-
-function ForgeTopBar() {
+const featureIcons: LucideIcon[] = [MonitorCog, Layers3, Gauge, FileJson];
+function CodeExample() {
   return (
-    <div className="sticky top-0 z-40 border-b border-[#ffd7bf] bg-white/85 backdrop-blur-xl">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <AppLink href="/" className="flex items-center gap-3">
-          <img
-            src="/OpenCreate-Forge-Logo.svg"
-            alt="OpenCreate Forge"
-            className="w-40"
-          />
-        </AppLink>
-
-        <div className="flex items-center gap-2">
-          <a
-            href="#downloads"
-            className="inline-flex items-center gap-2 rounded-full bg-[#ff6a00] px-4 py-2 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(255,106,0,0.22)] transition hover:-translate-y-0.5 hover:bg-[#e85e00]"
-          >
-            Download Now
-            <Download className="h-5 w-5" />
-          </a>
-        </div>
-      </div>
-    </div>
+    <code>
+      <span className="text-[#c586c0]">export</span>{" "}
+      <span className="text-[#569cd6]">class</span>{" "}
+      <span className="text-[#4ec9b0]">CustomTool</span>{" "}
+      <span className="text-[#c586c0]">extends</span>{" "}
+      <span className="text-[#4ec9b0]">BaseTool</span>{" "}
+      <span className="text-[#d4d4d4]">&#123;</span>
+      <span className="block pl-8">
+        <span className="text-[#9cdcfe]">id</span>
+        <span className="text-[#d4d4d4]">: </span>
+        <span className="text-[#4ec9b0]">ToolId</span>
+        <span className="text-[#d4d4d4]"> = </span>
+        <span className="text-[#ce9178]">&quot;custom&quot;</span>
+      </span>
+      <span className="block"> </span>
+      <span className="block pl-8">
+        <span className="text-[#dcdcaa]">onMouseMove</span>
+        <span className="text-[#d4d4d4]">(</span>
+        <span className="text-[#9cdcfe]">event</span>
+        <span className="text-[#d4d4d4]">: </span>
+        <span className="text-[#4ec9b0]">MouseEvent</span>
+        <span className="text-[#d4d4d4]">, </span>
+        <span className="text-[#9cdcfe]">context</span>
+        <span className="text-[#d4d4d4]">: </span>
+        <span className="text-[#4ec9b0]">ToolContext</span>
+        <span className="text-[#d4d4d4]">) &#123;</span>
+      </span>
+      <span className="block pl-16 text-[#6a9955]">
+        // Your tool logic stays close to the canvas.
+      </span>
+      <span className="block pl-8 text-[#d4d4d4]">&#125;</span>
+      <span className="block text-[#d4d4d4]">&#125;</span>
+    </code>
   );
 }
 
-function FeatureCard({
-  title,
-  description,
-  icon: Icon,
-}: {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-}) {
+function ForgeTopBar() {
+  const { copy } = useI18n();
   return (
-    <div className="flex flex-col h-full rounded-[28px] border border-[#ffd9bf] bg-white p-6 shadow-[0_20px_60px_rgba(51,21,0,0.05)] transition hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(51,21,0,0.08)]">
-      <div className="mb-auto inline-flex h-12 w-12 mx-auto md:mx-0 items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
-        <Icon className="h-5 w-5" />
+    <header className="sticky top-0 z-40 border-b border-[#ffd7bf] bg-white/90 backdrop-blur-xl">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+        <AppLink href="/" aria-label="OpenCreate home">
+          <img
+            src="/OpenCreate-Forge-Logo.svg"
+            alt="OpenCreate Forge"
+            width="280"
+            height="40"
+            className="h-10"
+          />
+        </AppLink>
+        <div className="flex items-center gap-2">
+          <LanguageToggle />
+          <a
+            href="#downloads"
+            className="hidden sm:inline-flex min-h-10 items-center gap-2 rounded-full bg-[#ff6a00] px-4 py-2.5 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(255,106,0,0.22)] transition hover:-translate-y-0.5 hover:bg-[#e85e00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff6a00]"
+          >
+            {copy.forge.downloadNow}
+            <Download className="h-4 w-4" aria-hidden="true" />
+          </a>
+        </div>
       </div>
-      <h3 className="mt-5 text-xl font-bold tracking-[-0.03em] text-[#1a1a1a] text-center md:text-left">
-        {title}
-      </h3>
-      <p className="mt-3 text-sm leading-6 text-[#555] text-pretty text-center md:text-left">
-        {description}
-      </p>
-    </div>
+    </header>
   );
 }
 
 function Hero({ release }: { release: ReturnType<typeof useForgeRelease> }) {
+  const { copy } = useI18n();
   return (
     <section
       id="about"
+      aria-labelledby="forge-title"
       className="relative overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,106,0,0.12),_transparent_38%),linear-gradient(180deg,_#fff0e5_0%,_#fffaf6_100%)]"
     >
-      <div className="absolute inset-0 -z-0 opacity-80 [background-image:linear-gradient(rgba(255,106,0,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,106,0,0.06)_1px,transparent_1px)] [background-size:44px_44px]" />
-      <div className="mx-auto grid min-h-[70vh] w-full max-w-7xl place-items-center px-4 py-20 sm:px-6 lg:px-8">
+      <div
+        className="absolute inset-0 -z-0 opacity-80 [background-image:linear-gradient(rgba(255,106,0,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,106,0,0.06)_1px,transparent_1px)] [background-size:44px_44px]"
+        aria-hidden="true"
+      />
+      <div className="mx-auto grid min-h-[68vh] w-full max-w-7xl place-items-center px-6 py-20 md:px-8">
         <Reveal className="relative z-10 flex max-w-5xl flex-col items-center text-center">
           {release.version && (
-            <Reveal delay={0.2}>
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#ff6a00] shadow-sm">
-                Latest Release: {release.version}
-              </div>
-            </Reveal>
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#ff6a00] shadow-sm">
+              {copy.forge.latest}: {release.version}
+            </div>
           )}
           <img
             src="/OpenCreate-Forge-Logo.svg"
             alt="OpenCreate Forge"
-            className="mb-8 w-80 drop-shadow-[0_20px_40px_rgba(255,106,0,0.18)]"
+            width="400"
+            height="80"
+            className="mb-8 h-20 drop-shadow-[0_20px_40px_rgba(255,106,0,0.18)]"
           />
-          {/* <div className="inline-flex items-center gap-2 rounded-full border border-[#ffd0b2] bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#b85a17]">
-            <Sparkles className="h-5 w-5 text-[#ff6a00]" />
-            Double-buffered image editing
-          </div> */}
-          <h1 className="max-w-4xl text-balance text-3xl font-black tracking-[-0.04em] text-[#101010] sm:text-5xl lg:text-5xl">
-            Forge your creations freely.
+          <h1
+            id="forge-title"
+            className="max-w-4xl text-balance text-4xl font-black tracking-[-0.05em] text-[#101010] sm:text-6xl"
+          >
+            {copy.forge.heroTitle}
           </h1>
-
           <p className="mt-6 max-w-3xl text-balance text-base leading-8 text-[#4b4b4b] sm:text-lg">
-            High-performance image manipulation featuring a double-buffered
-            Canvas rendering engine, layers support, layer styles, and
-            pixel-perfect precision tools.
+            {copy.forge.heroDescription}
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a
               href={release.downloadUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#ff6a00] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_20px_50px_rgba(255,106,0,0.26)] transition hover:-translate-y-0.5 hover:bg-[#e85e00]"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#ff6a00] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_20px_50px_rgba(255,106,0,0.26)] transition hover:-translate-y-0.5 hover:bg-[#e85e00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff6a00]"
             >
               {release.platform
-                ? `Download for ${release.platform}`
-                : "Download Latest Release"}
+                ? `${copy.forge.downloadNow} (${release.platform})`
+                : copy.forge.downloadNow}
               {release.platform === "Windows" && <WindowsLogo size={20} />}
               {release.platform === "macOS" && <MacOSLogo size={20} />}
               {release.platform === "Linux" && <LinuxLogo size={20} />}
-              {!release.platform && <Download className="h-5 w-5" />}
+              {!release.platform && (
+                <Download className="h-5 w-5" aria-hidden="true" />
+              )}
             </a>
             <a
-              href="#architecture"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#ffc7a4] bg-white px-6 py-3.5 text-sm font-semibold text-[#331500] transition hover:-translate-y-0.5 hover:border-[#ff6a00] hover:text-[#ff6a00]"
+              href="#product-view"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#ffc7a4] bg-white px-6 py-3.5 text-sm font-semibold text-[#331500] transition hover:-translate-y-0.5 hover:border-[#ff6a00] hover:text-[#ff6a00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff6a00]"
             >
-              Extendable by Design
-              {/* <ExternalLink className="h-5 w-5" /> */}
+              {copy.forge.heroSecondary}
+              <ArrowRight className="h-5 w-5" aria-hidden="true" />
             </a>
           </div>
         </Reveal>
@@ -174,25 +158,103 @@ function Hero({ release }: { release: ReturnType<typeof useForgeRelease> }) {
   );
 }
 
-function Perfomance() {
+function ProductView() {
+  const { copy } = useI18n();
   return (
-    <section id="perfomance" className="bg-white/70 p-6 md:p-8">
+    <section
+      id="product-view"
+      aria-labelledby="product-view-title"
+      className="bg-white p-6 md:p-8"
+    >
+      <div className="mx-auto max-w-7xl">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <Reveal>
+            <figure>
+              <div className="overflow-hidden rounded-[28px] border border-[#34251b] bg-[#171510] p-2 shadow-[0_30px_90px_rgba(51,21,0,0.18)]">
+                <img
+                  src="/OpenCreate-Forge-Alpha3-Screenshot.webp"
+                  alt={copy.forge.screenshotAlt}
+                  width="2880"
+                  height="1800"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-full rounded-[20px]"
+                />
+              </div>
+              <figcaption className="mt-3 text-center text-xs text-[#777]">
+                OpenCreate Forge · Alpha 3
+              </figcaption>
+            </figure>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <div>
+              <SectionHeading
+                id="product-view-title"
+                eyebrow={copy.forge.screenshotEyebrow}
+                title={copy.forge.screenshotTitle}
+                description={copy.forge.screenshotDescription}
+                icon={<Layers3 className="h-5 w-5" aria-hidden="true" />}
+              />
+              <ul className="mt-8 grid gap-3 text-sm text-[#4b4b4b]">
+                <li className="rounded-2xl border border-[#ffd9bf] bg-[#fffaf7] p-4">
+                  <strong className="text-[#1a1a1a]">
+                    {copy.forge.features[1].title}
+                  </strong>
+                  <span className="mt-1 block">
+                    {copy.forge.features[1].description}
+                  </span>
+                </li>
+                <li className="rounded-2xl border border-[#ffd9bf] bg-[#fffaf7] p-4">
+                  <strong className="text-[#1a1a1a]">
+                    {copy.forge.features[2].title}
+                  </strong>
+                  <span className="mt-1 block">
+                    {copy.forge.features[2].description}
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Performance() {
+  const { copy } = useI18n();
+  return (
+    <section id="performance" className="bg-white/70 p-6 md:p-8">
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading
-            eyebrow="Performance"
-            title="Features Built for Performance"
-            description="Every part of Forge is designed to keep complex workspaces responsive and precise."
+            id="performance-title"
+            eyebrow={copy.forge.featuresEyebrow}
+            title={copy.forge.featuresTitle}
+            description={copy.forge.featuresDescription}
             accentClassName="text-[#ff6a00]"
-            icon={<Zap className="h-5 w-5" />}
+            icon={<Zap className="h-5 w-5" aria-hidden="true" />}
           />
         </Reveal>
         <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {features.map((feature, index) => (
-            <Reveal key={feature.title} delay={index * 0.06}>
-              <FeatureCard {...feature} />
-            </Reveal>
-          ))}
+          {copy.forge.features.map((feature, index) => {
+            const Icon = featureIcons[index];
+            return (
+              <Reveal key={feature.title} delay={index * 0.06}>
+                <article className="flex h-full flex-col rounded-[28px] border border-[#ffd9bf] bg-white p-6 shadow-[0_20px_60px_rgba(51,21,0,0.05)] transition hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(51,21,0,0.08)]">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <h3 className="mt-5 text-xl font-bold tracking-[-0.03em] text-[#1a1a1a]">
+                    {feature.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-[#555]">
+                    {feature.description}
+                  </p>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -200,142 +262,85 @@ function Perfomance() {
 }
 
 function Architecture() {
+  const { copy } = useI18n();
+  const items = [
+    [
+      Network,
+      copy.forge.cleanArchitecture,
+      copy.forge.cleanArchitectureDescription,
+    ],
+    [CodeXml, copy.forge.typescript, copy.forge.typescriptDescription],
+    [DatabaseZap, copy.forge.state, copy.forge.stateDescription],
+  ] as const;
   return (
-    <section id="architecture" className="bg-white p-6 md:p-8">
+    <section
+      id="architecture"
+      aria-labelledby="architecture-title"
+      className="bg-[#fffaf7] p-6 md:p-8"
+    >
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading
-            eyebrow="Developer view"
-            title="Extendable by Design"
-            description="Want to create your own brush, filter, or selection tool? Forge's architecture allows you to create new tools by inheriting from the base class."
+            eyebrow={copy.forge.developerEyebrow}
+            title={copy.forge.developerTitle}
+            description={copy.forge.developerDescription}
             accentClassName="text-[#ff6a00]"
-            icon={<Cable className="h-5 w-5" />}
+            icon={<Cable className="h-5 w-5" aria-hidden="true" />}
           />
         </Reveal>
-
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-stretch">
+        <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_0.8fr]">
           <Reveal>
-            <div className="relative h-full overflow-hidden rounded-[32px] border border-[#ffd9bf] bg-[#fffaf7] p-8 shadow-[0_20px_60px_rgba(51,21,0,0.05)]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(255,106,0,0.08),_transparent_35%)]" />
-              <div className="relative">
-                {/* <div className="inline-flex items-center gap-2 rounded-full border border-[#ffd0b2] bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#b85a17]">
-                  <WandSparkles className="h-5 w-5 text-[#ff6a00]" />
-                  Extendable by design
-                </div> */}
-
-                <h3 className="text-2xl font-black tracking-[-0.04em] text-[#101010] text-center md:text-left">
-                  Architecture that stays out of your way.
-                </h3>
-                <p className="mt-3 max-w-xl text-sm leading-6 text-[#555] text-pretty text-center md:text-left">
-                  Forge keeps the editor logic split, typed, and stateful only
-                  where it matters, so tools can evolve without turning the UI
-                  into a maintenance burden.
-                </p>
-
-                <div className="mt-8 flex flex-col gap-3">
-                  <div className="flex items-start flex-col md:flex-row gap-4 rounded-3xl border border-[#ecd5c4] bg-white p-4">
-                    <div className="mt-0.5 inline-flex h-10 w-10 shrink-0 self-center items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
-                      <Network className="h-5 w-5" />
+            <article className="h-full rounded-[32px] border border-[#ffd9bf] bg-white p-4 sm:p-8 shadow-[0_20px_60px_rgba(51,21,0,0.05)]">
+              <h3
+                id="architecture-title"
+                className="text-2xl font-black tracking-[-0.04em] text-[#101010]"
+              >
+                {copy.forge.architectureTitle}
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-[#555]">
+                {copy.forge.architectureDescription}
+              </p>
+              <div className="mt-8 grid gap-3">
+                {items.map(([Icon, title, description]) => (
+                  <div
+                    key={title}
+                    className="flex gap-4 rounded-3xl border border-[#ecd5c4] bg-[#fffaf7] p-4"
+                  >
+                    <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-[#1a1a1a] text-center md:text-left">
-                        Clean architecture
-                      </div>
-                      <p className="mt-1 text-sm text-[#555] text-balance text-center md:text-left">
-                        Electron Main and Renderer responsibilities stay
-                        isolated.
+                      <h4 className="text-sm font-bold text-[#1a1a1a]">
+                        {title}
+                      </h4>
+                      <p className="mt-1 text-sm leading-6 text-[#555]">
+                        {description}
                       </p>
                     </div>
                   </div>
-
-                  <div className="flex items-start flex-col md:flex-row gap-4 rounded-3xl border border-[#ecd5c4] bg-white p-4">
-                    <div className="mt-0.5 inline-flex h-10 w-10 shrink-0 self-center items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
-                      <CodeXml className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-[#1a1a1a] text-center md:text-left">
-                        Native TypeScript
-                      </div>
-                      <p className="mt-1 text-sm text-[#555] text-balance text-center md:text-left">
-                        Tool actions are strongly typed to catch mistakes early.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start flex-col md:flex-row gap-4 rounded-3xl border border-[#ecd5c4] bg-white p-4">
-                    <div className="mt-0.5 inline-flex h-10 w-10 shrink-0 self-center items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
-                      <DatabaseZap className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-[#1a1a1a] text-center md:text-left">
-                        Zustand stores
-                      </div>
-                      <p className="mt-1 text-sm text-[#555] text-balance text-center md:text-left">
-                        Selection and history live outside the React tree.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-8 inline-flex items-center rounded-full bg-[#fff1e7] px-4 py-2 text-sm font-semibold text-[#ff6a00] text-balance">
-                  <WandSparkles className="h-5 w-5 mr-2 text-[#ff6a00]" />
-                  Tools can be extended without rewriting the engine
-                </div>
+                ))}
               </div>
-            </div>
+              <p className="mt-6 inline-flex rounded-full bg-[#fff1e7] px-4 py-2 text-sm font-semibold text-[#ff6a00]">
+                {copy.forge.extensibleNote}
+              </p>
+            </article>
           </Reveal>
-
           <Reveal delay={0.08}>
-            <div className="overflow-hidden rounded-[32px] border border-[#ffd9bf] bg-[#171510] shadow-[0_30px_90px_rgba(51,21,0,0.18)] hidden md:block">
-              <div className="border-b border-white/10 px-5 py-4">
-                <div className="flex items-center gap-2">
-                  <span className="h-3 w-3 rounded-full bg-red-400" />
-                  <span className="h-3 w-3 rounded-full bg-yellow-400" />
-                  <span className="h-3 w-3 rounded-full bg-green-400" />
-                </div>
+            <div className="hidden sm:block overflow-hidden rounded-[32px] border border-[#ffd9bf] bg-[#171510] shadow-[0_30px_90px_rgba(51,21,0,0.18)]">
+              <div
+                className="flex items-center gap-2 border-b border-white/10 px-5 py-4"
+                aria-hidden="true"
+              >
+                <span className="h-3 w-3 rounded-full bg-red-400" />
+                <span className="h-3 w-3 rounded-full bg-yellow-400" />
+                <span className="h-3 w-3 rounded-full bg-green-400" />
               </div>
-              {/* <pre className="overflow-x-auto p-6 text-sm leading-6 text-[#f7d7c2]">
-                <code>{`import { BaseTool, ToolContext, ToolId } from "@core/tools/BaseTool"
-
-export class CustomTool extends BaseTool {
-  id: ToolId = "custom"
-
-  async onMouseDown(e: MouseEvent, context: ToolContext): Promise<void> {
-    // Custom logic on click here
-  }
-
-  onMouseMove(e: MouseEvent, context: ToolContext): void {
-    // Instant rendering on mouse cursor here
-  }
-}`}</code>
-              </pre> */}
-              <div>
-                <SyntaxHighlighter
-                  language="typescript"
-                  style={vscDarkPlus}
-                  customStyle={{
-                    margin: 0,
-                    padding: "1rem",
-                    backgroundColor: "#1e1e1e", // Cor idêntica ao fundo do VS Code Dark
-                    fontSize: "0.875rem",
-                    lineHeight: "1.7",
-                  }}
-                >
-                  {`import { BaseTool, ToolContext, ToolId } from "@core/tools/BaseTool"
-
-export class CustomTool extends BaseTool {
-  id: ToolId = "custom"
-
-  async onMouseDown(e: MouseEvent, context: ToolContext): Promise<void> {
-    // Custom logic on click here
-  }
-
-  onMouseMove(e: MouseEvent, context: ToolContext): void {
-    // Instant rendering on mouse cursor here
-  }
-}`}
-                </SyntaxHighlighter>
-              </div>
+              <pre
+                className="overflow-x-auto p-6 text-sm leading-7 text-[#f7d7c2]"
+                aria-label="Example of a custom Forge tool"
+              >
+                <CodeExample />
+              </pre>
             </div>
           </Reveal>
         </div>
@@ -349,71 +354,119 @@ function Downloads({
 }: {
   release: ReturnType<typeof useForgeRelease>;
 }) {
-  const dynamicDownloads = [
+  const { copy } = useI18n();
+  const downloads = [
     {
       name: "Linux",
-      note: "AppImage (x86_64)",
-      action: "Download .AppImage",
+      note: copy.forge.downloadNotes.linux,
+      action: copy.forge.downloadActions.linux,
       href: release.allUrls.linux,
-      icon: LinuxLogo,
+      Icon: LinuxLogo,
     },
     {
       name: "macOS",
-      note: "Apple Silicon (arm64)",
-      action: "Download .dmg",
+      note: copy.forge.downloadNotes.macos,
+      action: copy.forge.downloadActions.macos,
       href: release.allUrls.macos,
-      icon: MacOSLogo,
+      Icon: MacOSLogo,
     },
     {
       name: "Windows",
-      note: "Windows 10/11 (x86_64)",
-      action: "Download .exe",
+      note: copy.forge.downloadNotes.windows,
+      action: copy.forge.downloadActions.windows,
       href: release.allUrls.windows,
-      icon: WindowsLogo,
+      Icon: WindowsLogo,
     },
   ];
-
   return (
-    <section id="downloads" className="bg-[#fff7f0] p-6 md:p-8">
+    <section
+      id="downloads"
+      aria-labelledby="downloads-title"
+      className="bg-[#fff0e5] p-6 md:p-8"
+    >
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading
-            eyebrow="Downloads"
-            title={`Download OpenCreate Forge ${release.version}`}
-            description="Choose your platform and start creating right now."
+            eyebrow={copy.forge.downloadsEyebrow}
+            title={copy.forge.downloadsTitle}
+            description={copy.forge.downloadsDescription}
             accentClassName="text-[#ff6a00]"
-            icon={<Download className="h-5 w-5" />}
+            icon={<Download className="h-5 w-5" aria-hidden="true" />}
           />
         </Reveal>
-
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {dynamicDownloads.map(
-            ({ name, note, action, href, icon: Icon }, index) => (
-              <Reveal key={name} delay={index * 0.08}>
-                <div className="flex h-full flex-col rounded-[30px] border border-[#ffd9bf] bg-white p-7 shadow-[0_20px_60px_rgba(51,21,0,0.05)]">
-                  <div className="inline-flex h-12 w-12 self-center md:self-start items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-5 text-2xl font-black tracking-[-0.04em] text-[#1a1a1a] text-center md:text-left">
-                    {name}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-[#555] text-center md:text-left">
-                    {note}
-                  </p>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-8 inline-flex w-fit self-center md:self-start items-center gap-2 rounded-full bg-[#ff6a00] px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#e85e00]"
-                  >
-                    {action}
-                    <ArrowRight className="h-5 w-5" />
-                  </a>
+          {downloads.map(({ name, note, action, href, Icon }, index) => (
+            <Reveal key={name} delay={index * 0.06}>
+              <article className="flex h-full flex-col rounded-[30px] border border-[#ffd9bf] bg-white p-7 shadow-[0_20px_60px_rgba(51,21,0,0.05)]">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#fff1e7] text-[#ff6a00]">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
                 </div>
-              </Reveal>
-            ),
-          )}
+                <h3 className="mt-5 text-2xl font-black tracking-[-0.04em] text-[#1a1a1a]">
+                  {name}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-[#555]">{note}</p>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-8 inline-flex min-h-12 w-fit items-center gap-2 rounded-full bg-[#ff6a00] px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#e85e00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff6a00]"
+                >
+                  {action}
+                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                </a>
+              </article>
+            </Reveal>
+          ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+export function Community() {
+  const { copy } = useI18n();
+  return (
+    <section
+      id="community"
+      aria-labelledby="community-title"
+      className="bg-[#f7f8ff] p-6 md:p-8"
+    >
+      <div className="mx-auto max-w-2xl">
+        <Reveal>
+          <div className="overflow-hidden rounded-[36px] bg-[linear-gradient(135deg,_#330b00_0%,_#601100_48%,_#ff6a00_150%)] px-6 py-12 text-white sm:px-10">
+            <div className="flex flex-col items-center text-center">
+              <h2
+                id="community-title"
+                className="text-3xl font-black tracking-[-0.04em] sm:text-5xl text-balance"
+              >
+                {copy.home.communityTitle}
+              </h2>
+              <p className="mt-4 max-w-2xl text-balance text-sm leading-6 text-white/80 sm:text-base">
+                {copy.home.communityDescription}
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="https://github.com/opencreate-app/forge"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#11162f] transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  {copy.home.communityPrimary}
+                  <Github className="h-5 w-5" aria-hidden="true" />
+                </a>
+                {/* <a
+                  href="https://github.com/opencreate-app/opencreate-app.github.io/issues"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  {copy.home.communitySecondary}
+                  <ExternalLink className="h-5 w-5" aria-hidden="true" />
+                </a> */}
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -424,17 +477,32 @@ export function ForgePage({
 }: {
   initialRelease?: ReleaseInfo;
 }) {
-  useDocumentMeta(FORGE_META);
+  const { language } = useI18n();
+  useDocumentMeta({
+    ...FORGE_META,
+    title:
+      language === "pt"
+        ? `${FORGE_META.title} — Editor de imagens gratuito`
+        : `${FORGE_META.title} — Free Image Editor`,
+    description:
+      language === "pt"
+        ? "Um editor de imagens rápido, privado e aberto para criar sem limitações."
+        : FORGE_META.description,
+  });
   const release = useForgeRelease(initialRelease);
-
   return (
     <div className="min-h-screen bg-[#fff0e5] text-[#331500]">
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <ForgeTopBar />
-      <main className="page-forge">
+      <main id="main-content" className="page-forge">
         <Hero release={release} />
-        <Perfomance />
+        <ProductView />
+        <Performance />
         <Architecture />
         <Downloads release={release} />
+        <Community />
       </main>
       <Footer />
     </div>

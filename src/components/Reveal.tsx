@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import type { PropsWithChildren } from "react";
+import type { CSSProperties } from "react";
 
 type RevealProps = PropsWithChildren<{
   className?: string;
@@ -7,20 +8,37 @@ type RevealProps = PropsWithChildren<{
 }>;
 
 export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(() => typeof window === "undefined");
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.12 },
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <motion.div
+    <div
+      ref={ref}
       className={className}
-      initial={{ opacity: 0, y: 22 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.22 }}
-      transition={{
-        type: "spring",
-        stiffness: 100, // rigidez da mola
-        damping: 15, // amortecimento (evita que fique quicando muito)
-        delay,
-      }}
+      style={{ "--reveal-delay": `${delay}s` } as CSSProperties}
+      data-reveal-visible={visible}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

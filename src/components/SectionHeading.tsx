@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 type SectionHeadingProps = {
+  id?: string;
   eyebrow: string;
   title: string;
   description?: string;
@@ -9,6 +10,7 @@ type SectionHeadingProps = {
 };
 
 export function SectionHeading({
+  id,
   eyebrow,
   title,
   description,
@@ -23,7 +25,10 @@ export function SectionHeading({
         {icon}
         <span>{eyebrow}</span>
       </div>
-      <h2 className="text-balance text-center md:text-left text-3xl font-black tracking-[-0.04em] text-[#1a1a1a] sm:text-4xl">
+      <h2
+        id={id}
+        className="text-balance text-center md:text-left text-3xl font-black tracking-[-0.04em] text-[#1a1a1a] sm:text-4xl"
+      >
         {title}
       </h2>
       {description ? (

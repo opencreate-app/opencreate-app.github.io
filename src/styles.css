@@ -2,11 +2,11 @@
 
 :root {
   font-family:
-    Roboto,
     ui-sans-serif,
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
+    "Segoe UI",
     sans-serif;
   color: #1a1a1a;
   font-synthesis: none;
@@ -17,6 +17,12 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -31,6 +37,51 @@ body {
 
 a {
   text-decoration: none;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  border-radius: 999px;
+  background: #11162f;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+[data-reveal-visible="false"] {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+[data-reveal-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 420ms ease var(--reveal-delay),
+    transform 420ms ease var(--reveal-delay);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal-visible="false"],
+  [data-reveal-visible="true"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 img {
@@ -49,10 +100,11 @@ img {
 
 /* Scroll margin top */
 
-.page-home section:is(#about, #manifest, #solutions, #community) {
+.page-home section:is(#about, #values, #solutions, #community) {
   scroll-margin-top: 64px;
 }
 
-.page-forge section:is(#about, #perfomance, #architecture, #downloads) {
+.page-forge
+  section:is(#about, #product-view, #performance, #architecture, #downloads) {
   scroll-margin-top: 76px;
 }

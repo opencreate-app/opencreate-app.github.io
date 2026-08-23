@@ -26,11 +26,12 @@
       content="OpenCreate, OpenCreate Forge, image editor, open-source, canvas engine, double-buffering, layers, design, raster, ocfd, OpenCreate Forge Document"
     />
     <meta name="author" content="OpenCreate" />
-    <link rel="canonical" href="https://opencreate-app.github.io" />
+    <link rel="canonical" href="https://opencreate-app.github.io/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://opencreate-app.github.io" />
+    <meta property="og:site_name" content="OpenCreate" />
+    <meta property="og:url" content="https://opencreate-app.github.io/" />
     <meta property="og:title" content="OpenCreate" />
     <meta
       property="og:description"
@@ -42,24 +43,44 @@
     />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary" />
-    <meta property="twitter:url" content="https://opencreate-app.github.io" />
-    <meta property="twitter:title" content="OpenCreate" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://opencreate-app.github.io/" />
+    <meta name="twitter:title" content="OpenCreate" />
     <meta
-      property="twitter:description"
+      name="twitter:description"
       content="We develop high-performance professional applications for creators. 100% open-source, offline-first, and telemetry-free."
     />
     <meta
-      property="twitter:image"
+      name="twitter:image"
       content="https://opencreate-app.github.io/cover.webp"
     />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;600&family=Roboto:wght@300;400;700;900&display=swap"
-      rel="stylesheet"
-    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://opencreate-app.github.io/#organization",
+            "name": "OpenCreate",
+            "url": "https://opencreate-app.github.io/",
+            "logo": "https://opencreate-app.github.io/OpenCreate-Logo.svg",
+            "sameAs": ["https://github.com/opencreate-app"]
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "OpenCreate Forge",
+            "applicationCategory": "GraphicsApplication",
+            "operatingSystem": "Windows, macOS, Linux",
+            "url": "https://opencreate-app.github.io/forge/",
+            "description": "A fast, private, open-source image editor for creators.",
+            "publisher": {
+              "@id": "https://opencreate-app.github.io/#organization"
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

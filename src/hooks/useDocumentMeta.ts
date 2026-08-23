@@ -5,6 +5,8 @@ type MetaInput = {
   description: string;
   canonical: string;
   themeColor: string;
+  image?: string;
+  siteName?: string;
   robots?: string;
 };
 
@@ -29,6 +31,8 @@ export function useDocumentMeta({
   description,
   canonical,
   themeColor,
+  image,
+  siteName,
   robots,
 }: MetaInput) {
   useEffect(() => {
@@ -53,12 +57,12 @@ export function useDocumentMeta({
       property: "og:url",
       content: canonical,
     });
-    setMeta('meta[property="twitter:title"]', {
-      property: "twitter:title",
+    setMeta('meta[name="twitter:title"]', {
+      name: "twitter:title",
       content: title,
     });
-    setMeta('meta[property="twitter:description"]', {
-      property: "twitter:description",
+    setMeta('meta[name="twitter:description"]', {
+      name: "twitter:description",
       content: description,
     });
     setMeta('link[rel="canonical"]', {
@@ -71,5 +75,24 @@ export function useDocumentMeta({
         content: robots,
       });
     }
-  }, [canonical, description, robots, themeColor, title]);
+    setMeta('meta[name="twitter:url"]', {
+      name: "twitter:url",
+      content: canonical,
+    });
+    if (image) {
+      setMeta('meta[property="og:image"]', {
+        property: "og:image",
+        content: image,
+      });
+      setMeta('meta[name="twitter:image"]', {
+        name: "twitter:image",
+        content: image,
+      });
+    }
+    if (siteName)
+      setMeta('meta[property="og:site_name"]', {
+        property: "og:site_name",
+        content: siteName,
+      });
+  }, [canonical, description, image, robots, siteName, themeColor, title]);
 }

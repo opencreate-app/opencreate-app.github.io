@@ -121,8 +121,8 @@ Esta página (na rota `/forge` do site) é focada no produto **OpenCreate Forge*
     - Link do botão: `https://github.com/gabrielborgesweb/OpenCreate-Forge/releases/download/v0.2.0/OpenCreate.Forge.Setup.0.2.0.exe`
   - **Card Linux:**
     - Título: `Linux`
-    - Nota: `Available in Flatpak package.`
-    - Botão: `Download .flatpak`
-    - Link do botão: `https://github.com/gabrielborgesweb/OpenCreate-Forge/releases/download/v0.2.0/OpenCreate.Forge-0.2.0-x86_64.flatpak`
+    - Nota: `Available as an AppImage for x86_64.`
+    - Botão: `Download .AppImage`
+    - Link do botão: `https://github.com/opencreate-app/forge/releases/latest`
 - **Imagens:**
   - Logotipos discretos e modernos dos sistemas operacionais (Apple, Windows, Linux) em tom monocromático.

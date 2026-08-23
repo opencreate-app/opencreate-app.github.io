@@ -2,8 +2,10 @@ import { SearchX } from "lucide-react";
 import { AppLink } from "../components/AppLink";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { NOT_FOUND_META } from "../siteMeta";
+import { useI18n } from "../i18n-context";
 
 export function NotFoundPage() {
+  const { copy } = useI18n();
   useDocumentMeta(NOT_FOUND_META);
 
   return (
@@ -13,17 +15,17 @@ export function NotFoundPage() {
           <SearchX className="h-6 w-6" />
         </div>
         <h1 className="mt-6 text-3xl font-black tracking-[-0.04em]">
-          Page not found
+          {copy.notFound.title}
         </h1>
         <p className="mt-3 text-sm leading-6 text-[#555]">
-          The route you opened does not exist in this site.
+          {copy.notFound.description}
         </p>
         <div className="mt-8 flex justify-center">
           <AppLink
             href="./"
             className="inline-flex items-center gap-2 rounded-full bg-[#5555FF] px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5"
           >
-            Back home
+            {copy.notFound.back}
           </AppLink>
         </div>
       </div>

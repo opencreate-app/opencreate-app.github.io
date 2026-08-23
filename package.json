@@ -6,11 +6,14 @@
   "scripts": {
     "dev": "vite",
     "dev:host": "vite --host",
-    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "build": "tsc && vite build && npm run prerender",
     "preview": "vite preview",
     "prerender": "node --import tsx scripts/prerender.tsx",
     "preview:host": "tsc && vite build && npm run prerender && npm run preview -- --host",
+    "lint": "eslint . --color",
+    "tsc": "tsc --noEmit --pretty",
+    "check": "npm run tsc && npm run lint",
+    "prettier": "prettier --write . --ignore-path .prettierignore",
     "lighthouse": "cross-env CHROME_PATH=\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" lighthouse http://localhost:4173 --chrome-flags=\"--headless\" --only-categories=performance",
     "lighthouse:report": "cross-env CHROME_PATH=\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" lighthouse http://localhost:4173 --chrome-flags=\"--headless\" --only-categories=performance --view --output html --output-path ./lighthouse-report.html"
   },
@@ -32,8 +35,10 @@
     "autoprefixer": "^10.4.20",
     "cross-env": "^7.0.3",
     "eslint": "^9.17.0",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.16",
+    "prettier": "^3.8.3",
     "globals": "^15.14.0",
     "lighthouse": "^13.1.0",
     "postcss": "^8.4.49",
@@ -46,5 +51,10 @@
   },
   "overrides": {
     "@opentelemetry/core": "^2.8.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "esbuild@0.25.12": true,
+    "fsevents@2.3.3": true
   }
 }

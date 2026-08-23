@@ -47,7 +47,7 @@ export async function fetchLatestRelease(): Promise<ReleaseInfo | null> {
     );
 
     const linuxAsset = data.assets.find((a: GitHubAsset) =>
-      a.name.endsWith(".AppImage"),
+      a.name.toLowerCase().endsWith(".appimage"),
     );
 
     return {

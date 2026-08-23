@@ -6,6 +6,7 @@ import { fetchLatestRelease } from "../src/hooks/useForgeRelease";
 import { ForgePage } from "../src/pages/ForgePage";
 import { HomePage } from "../src/pages/HomePage";
 import { NotFoundPage } from "../src/pages/NotFoundPage";
+import { LanguageProvider } from "../src/i18n";
 import { FORGE_META, HOME_META, NOT_FOUND_META } from "../src/siteMeta";
 
 type RenderedPage = {
@@ -82,20 +83,30 @@ function buildHtml(template: string, markup: string, meta: typeof HOME_META) {
   );
   html = replaceSingleTag(
     html,
-    /<meta\s+property="twitter:title"\s+content="[^"]*"\s*\/>/,
-    `<meta property="twitter:title" content="${escapeHtml(meta.title)}" />`,
+    /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/>/,
+    `<meta name="twitter:title" content="${escapeHtml(meta.title)}" />`,
   );
   html = replaceSingleTag(
     html,
-    /<meta\s+property="twitter:description"\s+content="[^"]*"\s*\/>/,
-    `<meta property="twitter:description" content="${escapeHtml(
+    /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/>/,
+    `<meta name="twitter:description" content="${escapeHtml(
       meta.description,
     )}" />`,
   );
   html = replaceSingleTag(
     html,
-    /<meta\s+property="twitter:url"\s+content="[^"]*"\s*\/>/,
-    `<meta property="twitter:url" content="${escapeHtml(meta.canonical)}" />`,
+    /<meta\s+name="twitter:url"\s+content="[^"]*"\s*\/>/,
+    `<meta name="twitter:url" content="${escapeHtml(meta.canonical)}" />`,
+  );
+  html = replaceSingleTag(
+    html,
+    /<meta\s+property="og:image"\s+content="[^"]*"\s*\/>/,
+    `<meta property="og:image" content="${escapeHtml(meta.image)}" />`,
+  );
+  html = replaceSingleTag(
+    html,
+    /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/>/,
+    `<meta name="twitter:image" content="${escapeHtml(meta.image)}" />`,
   );
   html = replaceSingleTag(
     html,
@@ -124,24 +135,39 @@ async function writePage({ outputPath, markup, meta }: RenderedPage) {
 }
 
 async function main() {
-  const latestRelease = await fetchLatestRelease();
+  // The client refreshes release metadata after hydration. Keeping this off by
+  // default makes static builds reproducible and independent from GitHub uptime.
+  const latestRelease =
+    process.env.PRERENDER_FETCH_RELEASE === "true"
+      ? await fetchLatestRelease()
+      : null;
 
   const pages: RenderedPage[] = [
     {
       outputPath: join(distDir, "index.html"),
-      markup: renderToStaticMarkup(<HomePage />),
+      markup: renderToStaticMarkup(
+        <LanguageProvider>
+          <HomePage />
+        </LanguageProvider>,
+      ),
       meta: HOME_META,
     },
     {
       outputPath: join(distDir, "forge", "index.html"),
       markup: renderToStaticMarkup(
-        <ForgePage initialRelease={latestRelease || undefined} />,
+        <LanguageProvider>
+          <ForgePage initialRelease={latestRelease || undefined} />
+        </LanguageProvider>,
       ),
       meta: FORGE_META,
     },
     {
       outputPath: join(distDir, "404.html"),
-      markup: renderToStaticMarkup(<NotFoundPage />),
+      markup: renderToStaticMarkup(
+        <LanguageProvider>
+          <NotFoundPage />
+        </LanguageProvider>,
+      ),
       meta: NOT_FOUND_META,
     },
   ];

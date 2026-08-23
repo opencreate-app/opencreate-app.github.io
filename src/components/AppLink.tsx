@@ -29,7 +29,7 @@ export function AppLink({ href, onClick, children, ...rest }: AppLinkProps) {
   };
 
   return (
-    <a href={href} onClick={handleClick} {...rest}>
+    <a {...rest} href={href} onClick={handleClick}>
       {children}
     </a>
   );
