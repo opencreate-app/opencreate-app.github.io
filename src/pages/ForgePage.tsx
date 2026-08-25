@@ -77,6 +77,35 @@ function ForgeTopBar() {
             className="h-10"
           />
         </AppLink>
+        <nav
+          aria-label="Forge navigation"
+          className="hidden items-center gap-5 text-sm font-medium text-[#565656] lg:flex"
+        >
+          <a
+            href="#product-view"
+            className="transition hover:text-[#ff6a00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ff6a00]"
+          >
+            {copy.forge.nav.product}
+          </a>
+          <a
+            href="#performance"
+            className="transition hover:text-[#ff6a00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ff6a00]"
+          >
+            {copy.forge.nav.features}
+          </a>
+          <a
+            href="#architecture"
+            className="transition hover:text-[#ff6a00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ff6a00]"
+          >
+            {copy.forge.nav.architecture}
+          </a>
+          <a
+            href="#community"
+            className="transition hover:text-[#ff6a00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ff6a00]"
+          >
+            {copy.forge.nav.community}
+          </a>
+        </nav>
         <div className="flex items-center gap-2">
           <LanguageToggle />
           <a

@@ -58,6 +58,12 @@ const english: Copy = {
     communitySecondary: "Share an idea",
   },
   forge: {
+    nav: {
+      product: "Product",
+      features: "Features",
+      architecture: "Architecture",
+      community: "Community",
+    },
     latest: "Latest release",
     downloadNow: "Download Forge",
     heroTitle: "A serious image editor, without the lock-in.",
@@ -201,6 +207,12 @@ const portuguese: Copy = {
     communitySecondary: "Compartilhar uma ideia",
   },
   forge: {
+    nav: {
+      product: "Produto",
+      features: "Recursos",
+      architecture: "Arquitetura",
+      community: "Comunidade",
+    },
     latest: "Lançamento mais recente",
     downloadNow: "Baixar o Forge",
     heroTitle: "Um editor de imagens sério, sem aprisionamento.",

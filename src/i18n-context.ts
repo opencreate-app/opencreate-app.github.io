@@ -36,6 +36,12 @@ export type Copy = {
     communitySecondary: string;
   };
   forge: {
+    nav: {
+      product: string;
+      features: string;
+      architecture: string;
+      community: string;
+    };
     latest: string;
     downloadNow: string;
     heroTitle: string;
