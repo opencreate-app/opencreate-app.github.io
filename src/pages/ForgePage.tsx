@@ -196,10 +196,10 @@ function ProductView() {
       className="bg-white p-6 md:p-8"
     >
       <div className="mx-auto max-w-7xl">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.3fr_0.9fr]">
           <Reveal>
             <figure>
-              <div className="overflow-hidden rounded-[28px] border border-[#34251b] bg-[#171510] p-2 shadow-[0_30px_90px_rgba(51,21,0,0.18)]">
+              <div className="overflow-hidden rounded-xl border border-[#34251b] bg-[#171510] shadow-[0_30px_90px_rgba(51,21,0,0.18)]">
                 <img
                   src="/OpenCreate-Forge-Alpha3-Screenshot.webp"
                   alt={copy.forge.screenshotAlt}
@@ -207,7 +207,7 @@ function ProductView() {
                   height="1800"
                   loading="lazy"
                   decoding="async"
-                  className="h-auto w-full rounded-[20px]"
+                  className="h-auto w-full"
                 />
               </div>
               <figcaption className="mt-3 text-center text-xs text-[#777]">
@@ -478,7 +478,7 @@ export function Community() {
                   href="https://github.com/opencreate-app/forge"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#11162f] transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#331500] transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   {copy.home.communityPrimary}
                   <Github className="h-5 w-5" aria-hidden="true" />

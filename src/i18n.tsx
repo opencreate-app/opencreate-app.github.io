@@ -6,6 +6,7 @@ const english: Copy = {
   nav: {
     about: "Why OpenCreate",
     values: "Values",
+    solutions: "Solutions",
     forge: "Get Forge",
     community: "Community",
     language: "Language",
@@ -14,7 +15,7 @@ const english: Copy = {
     eyebrow: "Free creative software",
     title: "Create freely, without asking permission.",
     description:
-      "OpenCreate makes fast, respectful tools for designers and artists who want professional work without subscriptions, surveillance, or locked files.",
+      "OpenCreate makes fast, respectful tools for designers and artists who want professional work without subscriptions, or surveillance.",
     primary: "Meet OpenCreate Forge",
     secondary: "Read our values",
     valuesEyebrow: "Our promise",
@@ -155,6 +156,7 @@ const portuguese: Copy = {
   nav: {
     about: "Por que OpenCreate",
     values: "Valores",
+    solutions: "Soluções",
     forge: "Obter o Forge",
     community: "Comunidade",
     language: "Idioma",
@@ -163,7 +165,7 @@ const portuguese: Copy = {
     eyebrow: "Software criativo gratuito",
     title: "Crie livremente, sem pedir permissão.",
     description:
-      "A OpenCreate cria ferramentas rápidas e respeitosas para designers e artistas que querem trabalho profissional sem assinaturas, vigilância ou arquivos bloqueados.",
+      "A OpenCreate cria ferramentas rápidas e respeitosas para designers e artistas que querem trabalho profissional sem assinaturas, ou vigilância.",
     primary: "Conheça o OpenCreate Forge",
     secondary: "Leia nossos valores",
     valuesEyebrow: "Nosso compromisso",
@@ -213,7 +215,7 @@ const portuguese: Copy = {
       architecture: "Arquitetura",
       community: "Comunidade",
     },
-    latest: "Lançamento mais recente",
+    latest: "Lançamento recente",
     downloadNow: "Baixar o Forge",
     heroTitle: "Um editor de imagens sério, sem aprisionamento.",
     heroDescription:

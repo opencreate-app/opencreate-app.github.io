@@ -6,6 +6,7 @@ export type Copy = {
   nav: {
     about: string;
     values: string;
+    solutions: string;
     forge: string;
     community: string;
     language: string;

@@ -44,16 +44,16 @@ function SiteNav() {
           className="hidden items-center gap-5 text-sm font-medium text-[#565656] lg:flex"
         >
           <a
-            href="#about"
+            href="#values"
             className="transition hover:text-[#5555FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5555FF]"
           >
             {copy.nav.about}
           </a>
           <a
-            href="#values"
+            href="#solutions"
             className="transition hover:text-[#5555FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5555FF]"
           >
-            {copy.nav.values}
+            {copy.nav.solutions}
           </a>
           <a
             href="#community"
@@ -103,7 +103,7 @@ function Hero() {
   const { copy } = useI18n();
   return (
     <section
-      id="about"
+      id="hero"
       aria-labelledby="home-title"
       className="relative overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(85,85,255,0.12),_transparent_42%),linear-gradient(180deg,_#ffffff_0%,_#f7f8ff_100%)]"
     >
