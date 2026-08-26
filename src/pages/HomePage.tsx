@@ -65,7 +65,7 @@ function SiteNav() {
         <div className="flex items-center gap-2">
           <LanguageToggle />
           <AppLink
-            href="/forge"
+            href="/forge/"
             className="hidden items-center gap-2 rounded-full bg-[#ff6a00] px-4 py-2.5 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(255,85,85,0.25)] transition hover:-translate-y-0.5 hover:bg-[#e85e00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff6a00] sm:flex"
           >
             {copy.nav.forge}
@@ -134,7 +134,7 @@ function Hero() {
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <AppLink
-              href="/forge"
+              href="/forge/"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#5555FF] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(85,85,255,0.28)] transition hover:-translate-y-0.5 hover:bg-[#4444f0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5555FF]"
             >
               {copy.home.primary}
@@ -239,7 +239,7 @@ function Solutions() {
                   )}
                 </a>
                 <AppLink
-                  href="/forge"
+                  href="/forge/"
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   {copy.home.forgePrimary}
@@ -357,7 +357,7 @@ export function Footer() {
             {copy.footer.products}
           </h2>
           <div className="mt-4 grid gap-3 text-sm text-[#666]">
-            <AppLink href="/forge">OpenCreate Forge</AppLink>
+            <AppLink href="/forge/">OpenCreate Forge</AppLink>
           </div>
         </div>
         <div>
