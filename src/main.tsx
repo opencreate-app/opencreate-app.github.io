@@ -18,3 +18,11 @@ if (container.childNodes.length > 0) {
 } else {
   createRoot(container).render(app);
 }
+
+if (import.meta.env.PROD && "serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch(() => {
+      // A cache failure must never prevent the site from loading normally.
+    });
+  });
+}
