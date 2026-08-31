@@ -23,10 +23,18 @@ export interface ReleaseInfo {
 export type Platform = "Windows" | "macOS" | "Linux" | "";
 
 const FALLBACK_URL = "https://github.com/opencreate-app/forge/releases/latest";
-const WINDOWS_ASSET_NAME = "OpenCreate.Forge.Setup.0.2.0.exe";
-const WINDOWS_FALLBACK_URL = `${FALLBACK_URL}/download/${WINDOWS_ASSET_NAME}`;
 const CACHE_KEY = "FORGE_RELEASE_CACHE";
 const CACHE_TTL = 3600000; // 1 hour
+
+function findWindowsAsset(assets: GitHubAsset[]) {
+  return (
+    assets.find(
+      (asset) =>
+        asset.name.toLowerCase().endsWith(".exe") &&
+        asset.name.toLowerCase().includes("setup"),
+    ) || assets.find((asset) => asset.name.toLowerCase().endsWith(".exe"))
+  );
+}
 
 export async function fetchLatestRelease(): Promise<ReleaseInfo | null> {
   try {
@@ -38,9 +46,7 @@ export async function fetchLatestRelease(): Promise<ReleaseInfo | null> {
 
     if (!data.assets) return null;
 
-    const windowsAsset = data.assets.find(
-      (a: GitHubAsset) => a.name === WINDOWS_ASSET_NAME,
-    );
+    const windowsAsset = findWindowsAsset(data.assets);
 
     const macosAsset = data.assets.find((a: GitHubAsset) =>
       a.name.endsWith(".dmg"),
@@ -52,9 +58,9 @@ export async function fetchLatestRelease(): Promise<ReleaseInfo | null> {
 
     return {
       version: data.tag_name,
-      downloadUrl: windowsAsset?.browser_download_url || WINDOWS_FALLBACK_URL,
+      downloadUrl: windowsAsset?.browser_download_url || FALLBACK_URL,
       allUrls: {
-        windows: windowsAsset?.browser_download_url || WINDOWS_FALLBACK_URL,
+        windows: windowsAsset?.browser_download_url || FALLBACK_URL,
         macos: macosAsset?.browser_download_url || FALLBACK_URL,
         linux: linuxAsset?.browser_download_url || FALLBACK_URL,
       },
@@ -89,9 +95,9 @@ export function useForgeRelease(initialData?: ReleaseInfo) {
     // 3. Fallback: Generic latest links
     return {
       version: "",
-      downloadUrl: WINDOWS_FALLBACK_URL,
+      downloadUrl: FALLBACK_URL,
       allUrls: {
-        windows: WINDOWS_FALLBACK_URL,
+        windows: FALLBACK_URL,
         macos: FALLBACK_URL,
         linux: FALLBACK_URL,
       },
